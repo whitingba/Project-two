@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "VW@man325",
-    "database": "exampledb",
+    "database": "crud_db",
     "host": "localhost",
     "dialect": "mysql"
   },
