@@ -15,8 +15,7 @@ CREATE TABLE tasks
     (20) NOT NULL,
     season VARCHAR
     (20),
-    owner VARCHAR
-    (20),
     primary KEY
     (id)
 );
+
