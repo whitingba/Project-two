@@ -1,5 +1,16 @@
-DROP DATABASE IF EXISTS exampledb;
-CREATE DATABASE exampledb;
+DROP DATABASE IF EXISTS crud_db;
+CREATE DATABASE crud_db;
 
-DROP DATABASE IF EXISTS testdb;
-CREATE DATABASE testdb;
+USE crud_db;
+
+CREATE TABLE tasks
+(
+    id INT NOT NULL
+    AUTO_INCREMENT,
+    task VARCHAR
+    (155) NOT NULL,
+    frequency VARCHAR
+    (20) NOT NULL,
+    primary KEY
+    (id)
+);
