@@ -1,24 +1,42 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
+  // Get all taskss
+  app.get("/api/tasks", function(req, res) {
+    db.tasks.findAll({}).then(function(dbtasks) {
+      res.json(dbtasks);
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  // Create a new tasks
+  app.post("/api/tasks", function(req, res) {
+    db.tasks.create(req.body).then(function(dbtasks) {
+      res.json(dbtasks);
     });
   });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+  // Delete an tasks by id
+  app.delete("/api/tasks/:id", function(req, res) {
+    db.tasks.destroy({ where: { id: req.params.id } }).then(function(dbtasks) {
+      res.json(dbtasks);
     });
   });
+
+// Update an existing task
+ // PUT route for updating tasks. We can get the updated tasks data from req.body
+ app.put("/api/tasks", function(req, res) {
+  db.tasks.update({
+    text: req.body.text,
+    complete: req.body.complete
+  }, {
+    where: {
+      id: req.body.id
+    }
+  }).then(function(dbTasks) {
+    res.json(dbTodo);
+  })
+    .catch(function(err) {
+      res.json(err);
+    });
+});
 };
