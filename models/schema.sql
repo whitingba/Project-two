@@ -11,6 +11,12 @@ CREATE TABLE tasks
     (155) NOT NULL,
     frequency VARCHAR
     (20) NOT NULL,
+    location VARCHAR
+    (20) NOT NULL,
+    season VARCHAR
+    (20),
+    owner VARCHAR
+    (20),
     primary KEY
     (id)
 );
