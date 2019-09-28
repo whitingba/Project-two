@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": null,
+    "password": "U6$83gkcCB54Fe",
     "database": "crud_db",
     "host": "localhost",
     "dialect": "mysql"
