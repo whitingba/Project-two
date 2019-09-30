@@ -4,17 +4,19 @@
     <meta charset="utf-8" />
     <link
       rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
     />
 
     <link
-      href="/your-path-to-fontawesome/css/fontawesome.css"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
     />
 
     <link
       rel="stylesheet"
-      href="./styles/styles.css"
+      href="../public/styles/styles.css"
       media="screen"
       title="no title"
       charset="utf-8"
@@ -106,68 +108,110 @@
               <button id="allUsersBtn">All Users</button>
             </div>
           </div>
-          <div id="listAll">Results listed here.</div>
+          <div id="listAll">
+            <div class="resultsListContainer card bg-light">
+              <div id="resultsListItem">
+                <!-- NOTE: If there are no results the table will not display -->
+                <table class="table table-striped">
+                  <thead>
+                    <!-- TODO: if the Users are chosen Task will become User, Owner
+                    will be eliminated -->
+                    <tr>
+                      <th scope="col" id="id">ID</th>
+                      <th scope="col" id="taskOrUser">Task</th>
+                      <th scope="col" id="taskOrUser">Frequency</th>
+                      <th scope="col" id="owner">Owner</th>
+                      <th scope="col" id="buttons"></th>
+                    </tr>
+                  </thead>
+                  <tbody class="tdbody">
+                    <!-- TODO: Query that will dynamically fill in the table -->
+                    <tr>
+                      <td>1</td>
+                      <td>Steam clean the carpets</td>
+                      <td>Quarterly</td>
+                      <td>Zola</td>
+                      <td>
+                        <button class="editTaskBtn">Edit</button>
+                        <button class="deleteTaskBtn">Delete</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>2</td>
+                      <td>Clean baseboards</td>
+                      <td>Monthly</td>
+                      <td>Allen</td>
+                      <td>
+                        <button class="editTaskBtn">Edit</button>
+                        <button class="deleteTaskBtn">Delete</button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>Pick up the dog poop</td>
+                      <td>Daily</td>
+                      <td>Jamie</td>
+                      <td>
+                        <button class="editTaskBtn">Edit</button>
+                        <button class="deleteTaskBtn">Delete</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="col col-lg-4">
-          <div class="row">
-            <div class="col col-lg-12">
-              <div class="card bg-light mb-3">
-                <div class="card-header">
-                  <h5 class="card-title">Add Task</h5>
-                </div>
-                <div class="card-body">
-                  <input type="text" id="addTaskInput" />
-                  <button id="addTaskBtn">Add Task</button>
-                </div>
-              </div>
+          <div class="card bg-light">
+            <div class="card-header">
+              <h5 class="card-title">Add Task</h5>
+            </div>
+            <div class="card-body pl-4">
+              <input type="text" id="addTaskInput" />
+              <button id="addTaskBtn">Add Task</button>
             </div>
           </div>
-          <div class="row">
-            <div class="col col-lg-12">
-              <div class="card bg-light mb-3">
-                <div class="card-header">
-                  <h5 class="card-title">Add User</h5>
-                </div>
-                <div class="card-body">
-                  <input type="text" id="addUserInput" />
-                  <button id="addUserBtn">Add User</button>
-                </div>
-              </div>
-            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Please add a task.</h3>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
 
-          <div class="row">
-            <div class="col col-lg-12">
-              <div class="card bg-light mb-3">
-                <div class="card-header">
-                  <h5 class="card-title">Delete Task</h5>
-                </div>
-                <div class="card-body">
-                  <input type="text" id="deleteTaskInput" />
-                  <button id="deleteTaskBtn">Delete Task</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col col-lg-12">
-              <div class="card bg-light mb-3">
-                <div class="card-header">
-                  <h5 class="card-title">Delete User</h5>
-                </div>
-                <div class="card-body">
-                  <input type="text" id="deleteUserInput" />
-                  <button id="deleteUserBtn">Delete User</button>
-                </div>
-              </div>
-            </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
           </div>
         </div>
       </div>
     </div>
     <!-- end of admin.handlebars -->
 
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -178,5 +222,6 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script src="../public/js/admin.js"></script>
   </body>
 </html>
