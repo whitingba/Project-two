@@ -85,93 +85,70 @@
         </ul>
       </div>
     </nav>
-    <!-- This will be in admin.handlebars -->
 
-    <div class="container admin">
+    <!-- This will be in newtask.handlebars -->
+    <div class="container newTask">
       <div class="row">
         <div class="col col-lg-12">
           <div class="jumbotron text-center">
-            <h1 class="display-4">Admin</h1>
+            <h1>New Task</h1>
           </div>
         </div>
       </div>
 
       <div class="row">
-        <div class="col col-lg-8">
-          <div class="card bg-light mb-3">
-            <div class="card-header">
-              <h5 class="card-title">List All Tasks or Users</h5>
+        <div class="col col-lg-12">
+          <form>
+            <div class="form-group">
+              <label for="taskInput">Task</label>
+              <input
+                type="text"
+                class="form-control"
+                id="taskInput"
+                placeholder="Enter task (e.g. Clean gutters.)"
+              />
             </div>
-            <div class="card-body">
-              <button id="allTasksBtn">All Tasks</button>
-              <button id="allUsersBtn">All Users</button>
+            <div class="form-group">
+              <label for="taskSeason">Season</label>
+              <select class="form-control" id="taskSeason">
+                <option>spring</option>
+                <option>summer</option>
+                <option>fall</option>
+                <option>winter</option>
+                <option>none</option>
+              </select>
             </div>
-          </div>
-          <div id="listAll">
-            <div class="resultsListContainer card bg-light">
-              <div id="resultsListItem">
-                <!-- NOTE: If there are no results the table will not display -->
-                <table class="table table-striped">
-                  <thead>
-                    <!-- TODO: if the Users are chosen Task will become User, Owner
-                    will be eliminated -->
-                    <tr>
-                      <th scope="col" id="id">ID</th>
-                      <th scope="col" id="taskOrUser">Task</th>
-                      <th scope="col" id="taskOrUser">Frequency</th>
-                      <th scope="col" id="owner">Owner</th>
-                      <th scope="col" id="buttons"></th>
-                    </tr>
-                  </thead>
-                  <tbody class="tdbody">
-                    <!-- TODO: Query that will dynamically fill in the table -->
-                    <tr>
-                      <td>1</td>
-                      <td>Steam clean the carpets</td>
-                      <td>Quarterly</td>
-                      <td>Zola</td>
-                      <td>
-                        <button class="editTaskBtn">Edit</button>
-                        <button class="deleteTaskBtn">Delete</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Clean baseboards</td>
-                      <td>Monthly</td>
-                      <td>Allen</td>
-                      <td>
-                        <button class="editTaskBtn">Edit</button>
-                        <button class="deleteTaskBtn">Delete</button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Pick up the dog poop</td>
-                      <td>Daily</td>
-                      <td>Jamie</td>
-                      <td>
-                        <button class="editTaskBtn">Edit</button>
-                        <button class="deleteTaskBtn">Delete</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div class="form-group">
+              <label for="taskFrequency">Frequency</label>
+              <select class="form-control" id="taskFrequency">
+                <option>daily</option>
+                <option>weekly</option>
+                <option>monthly</option>
+                <option>quarterly</option>
+                <option>bi-annual</option>
+                <option>annual</option>
+                <option>other</option>
+              </select>
             </div>
-          </div>
-        </div>
 
-        <div class="col col-lg-4">
-          <div class="card bg-light">
-            <div class="card-header">
-              <h5 class="card-title">Add Task</h5>
+            <div class="form-group">
+              <label for="taskOwner">Owner</label>
+              <select class="form-control" id="taskOwner">
+                <option>Jaime Hardcoded</option>
+                <option>Bulah Hardcoded</option>
+              </select>
             </div>
-            <div class="card-body pl-4">
-              <input type="text" id="addTaskInput" />
-              <button id="addTaskBtn">Add Task</button>
+
+            <div class="form-group">
+              <label for="taskLocation">Location</label>
+              <select class="form-control" id="taskLocation">
+                <option>indoor</option>
+                <option>outdoor</option>
+                <option>both</option>
+              </select>
             </div>
-          </div>
+            <button class="btn btn-primary" id="addTaskBtn">Add Task</button>
+          </form>
         </div>
       </div>
     </div>
@@ -221,6 +198,6 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
-    <script src="../public/js/admin.js"></script>
+    <script src="../public/js/newtask.js"></script>
   </body>
 </html>
