@@ -1,42 +1,76 @@
+// Import the model to use its database functions.
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all taskss
-  app.get("/api/tasks", function(req, res) {
-    db.tasks.findAll({}).then(function(dbtasks) {
-      res.json(dbtasks);
+
+  // GET route for getting all of the tasks
+  app.get("/", function(req, res) {
+    db.Burgers.findAll({
+      order: [
+        ['task_name', 'ASC'],
+      ],
+      include: [
+        {
+          model: db.Users
+        }
+      ],
+    }).then(function(tasks) {
+      // We have access to the tasks as an argument inside of the callback function
+      console.log(burgers);
+      db.Users.findAll().then(function(users){
+        res.render("index",{tasks,users});
+      });
+     
     });
   });
 
-  // Create a new tasks
   app.post("/api/tasks", function(req, res) {
-    db.tasks.create(req.body).then(function(dbtasks) {
-      res.json(dbtasks);
-    });
+    db.Tasks.create({
+      task_name: req.body.task_name,
+      UserId: req.body.UserId
+    }).then(function(results) {
+      res.json(results);
+    }).catch(function(error) {
+      return res.status(500).send(error);
+    }); 
   });
 
-  // Delete an tasks by id
+  app.post("/api/user", function(req, res) {
+    db.Users.create({
+      user_name: req.body.user_name,
+    }).then(function(results) {
+      res.json(results);
+    }).catch(function(error) {
+      return res.status(500).send(error);
+    }); 
+  });
+
+  app.put("/api/tasks/:id", function(req, res) {
+    var condition = "id = " + req.params.id;
+  
+    db.Tasks.update({
+      frequency: req.body.frequency,
+    }, {
+      where: {
+        id: req.params.id
+      }
+    }).then(function(results) {
+      res.json(results);
+    });
+  });
+  
   app.delete("/api/tasks/:id", function(req, res) {
-    db.tasks.destroy({ where: { id: req.params.id } }).then(function(dbtasks) {
-      res.json(dbtasks);
+    var condition = "id = " + req.params.id;
+  
+    db.Tasks.destroy({
+      frequency: req.body.frequency,
+    }, {
+      where: {
+        id: req.params.id
+      }
+    }).then(function(results) {
+      res.json(results);
     });
   });
-
-// Update an existing task
- // PUT route for updating tasks. We can get the updated tasks data from req.body
- app.put("/api/tasks", function(req, res) {
-  db.tasks.update({
-    text: req.body.text,
-    complete: req.body.complete
-  }, {
-    where: {
-      id: req.body.id
-    }
-  }).then(function(dbTasks) {
-    res.json(dbTodo);
-  })
-    .catch(function(err) {
-      res.json(err);
-    });
-});
-};
+  
+}
