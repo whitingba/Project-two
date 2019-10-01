@@ -5,7 +5,7 @@ module.exports = function(app) {
 
   // GET route for getting all of the tasks
   app.get("/", function(req, res) {
-    db.Burgers.findAll({
+    db.Tasks.findAll({
       order: [
         ['task_name', 'ASC'],
       ],
@@ -58,7 +58,7 @@ module.exports = function(app) {
       res.json(results);
     });
   });
-  
+
   app.delete("/api/tasks/:id", function(req, res) {
     var condition = "id = " + req.params.id;
   
