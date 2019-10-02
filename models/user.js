@@ -1,3 +1,4 @@
+
 var Sequelize = require("sequelize");
 
 var db = require("../config/database");
@@ -10,5 +11,6 @@ var User = db.define("user", {
       type: Sequelize.STRING
       }
 })
+
 
 module.exports = User;
