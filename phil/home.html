@@ -16,7 +16,7 @@
 
     <link
       rel="stylesheet"
-      href="../public/styles/styles.css"
+      href="./styles/styles.css"
       media="screen"
       title="no title"
       charset="utf-8"
@@ -86,104 +86,114 @@
       </div>
     </nav>
 
-    <!-- This will be in newtask.handlebars -->
-    <div class="container newTask">
+    <!-- this will go in home.handlebars -->
+    <script
+      src="https://kit.fontawesome.com/8d6ae247e3.js"
+      crossorigin="anonymous"
+    ></script>
+    <div class="container home">
       <div class="row">
         <div class="col col-lg-12">
           <div class="jumbotron text-center">
-            <h1>New Task</h1>
+            <h1>Home</h1>
           </div>
         </div>
       </div>
-
       <div class="row">
-        <div class="col col-lg-12">
-          <form>
-            <div class="form-group">
-              <label for="taskInput">Task</label>
-              <input
-                type="text"
-                class="form-control"
-                id="taskInput"
-                placeholder="Enter task (e.g. Clean gutters.)"
-              />
-            </div>
-            <div class="form-group">
-              <label for="taskSeason">Season</label>
-              <select class="form-control" id="taskSeason">
-                <option>spring</option>
-                <option>summer</option>
-                <option>fall</option>
-                <option>winter</option>
-                <option>none</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="taskFrequency">Frequency</label>
-              <select class="form-control" id="taskFrequency">
-                <option>daily</option>
-                <option>weekly</option>
-                <option>monthly</option>
-                <option>quarterly</option>
-                <option>bi-annual</option>
-                <option>annual</option>
-                <option>other</option>
-              </select>
-            </div>
-
-            <!-- TODO: how do I get all the users from the database here? -->
-            <div class="form-group">
-              <label for="taskOwner">Owner</label>
-              <select class="form-control" id="taskOwner">
-                <option>Jaime Hardcoded</option>
-                <option>Bulah Hardcoded</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="taskLocation">Location</label>
-              <select class="form-control" id="taskLocation">
-                <option>indoor</option>
-                <option>outdoor</option>
-                <option>both</option>
-              </select>
-            </div>
-            <button class="btn btn-primary" id="addTaskBtn">Add Task</button>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title">Please add a task.</h3>
+        <div class="col col-lg-4">
+          <div class="card">
             <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
+              class="btn btn-outline-secondary btn-lg btn-block p-5 addTask"
             >
-              <span aria-hidden="true">&times;</span>
+              <h2>
+                <i class="fas fa-folder-plus"></i>
+                <br />
+                <br />
+                Add Task
+              </h2>
             </button>
           </div>
+        </div>
 
-          <div class="modal-footer">
+        <div class="col col-lg-4">
+          <div class="card">
             <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
+              class="btn btn-outline-secondary btn-lg btn-block p-5 editTask"
             >
-              Close
+              <h2>
+                <i class="fas fa-edit"></i>
+                <br />
+                <br />
+                Edit Task
+              </h2>
+            </button>
+          </div>
+        </div>
+
+        <div class="col col-lg-4">
+          <div class="card">
+            <button
+              class="btn btn-outline-secondary btn-lg btn-block p-5 listTask"
+            >
+              <h2>
+                <i class="fas fa-list-alt"></i>
+
+                <br />
+                <br />
+                List Tasks
+              </h2>
             </button>
           </div>
         </div>
       </div>
+
+      <div class="row mt-5">
+        <div class="col col-lg-4">
+          <div class="card">
+            <button
+              class="btn btn-outline-secondary btn-lg btn-block p-5 addUser"
+            >
+              <h2>
+                <i class="fas fa-user-plus"></i>
+                <br />
+                <br />
+                Add User
+              </h2>
+            </button>
+          </div>
+        </div>
+        <div class="col col-lg-4">
+          <div class="card">
+            <button
+              class="btn btn-outline-secondary btn-lg btn-block p-5 editUser"
+            >
+              <h2>
+                <i class="fas fa-user-edit"></i>
+                <br />
+                <br />
+                Edit Users
+              </h2>
+            </button>
+          </div>
+        </div>
+        <div class="col col-lg-4">
+          <div class="card">
+            <button
+              class="btn btn-outline-secondary btn-lg btn-block p-5 listUser"
+            >
+              <h2>
+                <i class="fas fa-list-alt"></i>
+                <br />
+                <br />
+                List Users
+              </h2>
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="../public/js/newtask.js"></script>
-    <!-- end of newtask.handlebars -->
+    <script src="/public/js/home.js"></script>
+    <!-- end of admin.handlebars -->
 
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
