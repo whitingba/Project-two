@@ -5,17 +5,12 @@ USE crud_db;
 
 CREATE TABLE tasks
 (
-    id INT NOT NULL
-    AUTO_INCREMENT,
+    id INTEGER
+    AUTO_INCREMENT NOT NULL,
     task VARCHAR
     (155) NOT NULL,
     frequency VARCHAR
     (20) NOT NULL,
-    -- location VARCHAR
-    -- (20) NOT NULL,
-    -- season VARCHAR
-    -- (20),
-    primary KEY
+PRIMARY KEY
     (id)
-);
-
+)
