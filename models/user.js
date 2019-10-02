@@ -20,9 +20,13 @@ module.exports = function (sequelize, DataTypes) {
                 len: [5, 20]
             }
         }
-    });
 
+    })
 
+    User.associate = function (models) {
+        //User will have many tasks
+        User.hasMany(models.Task); //foreign id of UserId will be added to the Task table
+    };
 
     return User;
 };
