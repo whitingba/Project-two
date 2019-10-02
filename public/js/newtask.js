@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  //TODO: call to the js file that will have GET/PUT/POST/DELETE api calls
   $("#addTaskBtn").on("click", function() {
     event.preventDefault();
     task = $("#taskInput").val();
@@ -17,6 +18,7 @@ $(document).ready(function() {
     } else {
       task = task.trim();
       console.log(task, season, frequency, owner, loc);
+      //TODO: call on the POST method from the above file
     }
   });
 });
