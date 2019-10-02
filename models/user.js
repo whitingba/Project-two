@@ -1,3 +1,4 @@
+
 var Sequelize = require("sequelize");
 
 var db = require("../config/database");
