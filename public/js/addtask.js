@@ -7,7 +7,7 @@ $(document).ready(function() {
           "Content-Type": "application/json"
         },
         type: "POST",
-        url: "api/addtask", //NOTE: not sure what the route is yet
+        url: "api/tasks", //NOTE: not sure what the route is yet
         data: JSON.stringify(task, frequency, owner)
       });
     }
