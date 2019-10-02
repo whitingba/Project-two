@@ -22,11 +22,7 @@ module.exports = function (sequelize, DataTypes) {
         }
     });
 
-    User.associate = function (models) {
-        User.belongsToMany(models.MaintenanceTask, {
-            through: 'UserMaintenanceTasks'
-        });
-    };
+
 
     return User;
 };

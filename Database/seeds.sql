@@ -1,145 +1,145 @@
 USE crud_db;
 -- Monthly tasks
 INSERT INTO tasks
-    (task, frequency, location)
+    (task, frequency)
 VALUES
-    ('Inspect HVAC filter, replace if dirty', 'Monthly', 'indoor');
+    ('Inspect HVAC filter, replace if dirty', 'Monthly');
 INSERT INTO tasks
-    (task, frequency, location)
+    (task, frequency)
 VALUES
-    ('Clean kitchen sink disposal', 'Monthly', 'indoor');
+    ('Clean kitchen sink disposal', 'Monthly');
 INSERT INTO tasks
-    (task, frequency, location)
+    (task, frequency)
 VALUES
-    ('Inspect fire extinguisher', 'Monthly', 'indoor');
+    ('Inspect fire extinguisher', 'Monthly');
 
 -- Quarterly task
 INSERT INTO tasks
-    (task, frequency, location)
+    (task, frequency)
 VALUES
-    ('Test smoke/carbon dioxide detectors', 'Quarterly', 'indoor');
+    ('Test smoke/carbon dioxide detectors', 'Quarterly');
 INSERT INTO tasks
-    (task, frequency, location)
+    (task, frequency)
 VALUES
-    ('Run water and flush toilets in unused spaces', 'Quarterly', 'indoor');
+    ('Run water and flush toilets in unused spaces', 'Quarterly');
 INSERT INTO tasks
-    (task, frequency, location)
+    (task, frequency)
 VALUES
-    ('Check water softener, add salt if needed', 'Quarterly', 'indoor');
+    ('Check water softener, add salt if needed', 'Quarterly');
 
 -- Biannual tasks
 INSERT INTO tasks
-    (task, frequency, location)
+    (task, frequency)
 VALUES
-    ('Test your water heater’s pressure relief valve', 'Biannually', 'indoor');
+    ('Test your water heater’s pressure relief valve', 'Biannually');
 INSERT INTO tasks
-    (task, frequency, location)
+    (task, frequency)
 VALUES
-    ('Replace batteries in smoke/carbon dioxide detectors', 'Biannually', 'indoor');
+    ('Replace batteries in smoke/carbon dioxide detectors', 'Biannually');
 INSERT INTO tasks
-    (task, frequency, location)
+    (task, frequency)
 VALUES
-    ('Vacuum refrigerator coils', 'Biannually', 'indoor');
+    ('Vacuum refrigerator coils', 'Biannually');
 
 -- Annual tasks
 INSERT INTO tasks
-    (task, frequency, location)
+    (task, frequency)
 VALUES
-    ('Flush hot water heater and remove sediment', 'Annual', 'indoor');
+    ('Flush hot water heater and remove sediment', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location)
+    (task, frequency)
 VALUES
-    ('Inspect plumbing for leaks, clean faucet aerators', 'Annual', 'indoor');
+    ('Inspect plumbing for leaks, clean faucet aerators', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location)
+    (task, frequency)
 VALUES
-    ('Check all locks and deadbolts to doors and windows to ensure they are working properly', 'Annual', 'indoor');
+    ('Check all locks and deadbolts to doors and windows to ensure they are working properly', 'Annual');
 
 
 -- Annual by season 
 
 -- Spring
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Clean gutters', 'Annual', 'outdoor', 'spring');
+    ('Clean gutters', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Get air conditioning system ready for summer', 'Annual', 'outdoor', 'spring');
+    ('Get air conditioning system ready for summer', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Clear dead plants/shrubs/leaves ', 'Annual', 'outdoor', 'spring');
+    ('Clear dead plants/shrubs/leaves ', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Lawnmower check-up to make sure it ready for summer', 'Annual', 'outdoor', 'spring');
+    ('Lawnmower check-up to make sure it ready for summer', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Inspect roof, siding or brick for damage', 'Annual', 'outdoor', 'spring');
+    ('Inspect roof, siding or brick for damage', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Fertilize lawn', 'Annual', 'outdoor', 'spring');
+    ('Fertilize lawn', 'Annual');
 
 
 -- Summer
 
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Clean and repair deck/patio, washing and restaining, as needed', 'Annual', 'outdoor', 'summer');
+    ('Clean and repair deck/patio, washing and restaining, as needed', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Clean out window wells of debris', 'Annual', 'outdoor', 'summer');
+    ('Clean out window wells of debris', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Check and clean dryer vent and other exhaust vents to exterior of home', 'Annual', 'outdoor', 'summer');
+    ('Check and clean dryer vent and other exhaust vents to exterior of home', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Clean garage', 'Annual', 'outdoor', 'summer');
+    ('Clean garage', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Take care of any insect problems in yard or exterior of home', 'Annual', 'outdoor', 'summer');
+    ('Take care of any insect problems in yard or exterior of home', 'Annual');
 
 
--- Fall
+--Fall Tasks
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Winterize air conditioning system and cover it', 'Annual', 'outdoor', 'fall');
+    ('Winterize air conditioning system and cover it', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Turn off and flush outdoor water faucets and sprinkler system', 'Annual', 'outdoor', 'fall');
+    ('Turn off and flush outdoor water faucets and sprinkler system', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Wrap insulation around outdoor faucets', 'Annual', 'outdoor', 'fall');
+    ('Wrap insulation around outdoor faucets', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Get chimney cleaned out', 'Annual', 'outdoor', 'fall');
+    ('Get chimney cleaned out', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Rake leaves and aerate lawn', 'Annual', 'outdoor', 'fall');
+    ('Rake leaves and aerate lawn', 'Annual');
 
 
 -- Winter
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Regularly check for ice dams and icicles on roof and remove', 'Annual', 'outdoor', 'winter');
+    ('Regularly check for ice dams and icicles on roof and remove', 'Annual');
 INSERT INTO tasks
-    (task, frequency, location, season)
+    (task, frequency)
 VALUES
-    ('Replacing window screens and screen doors with storm windows and doors', 'Annual', 'outdoor', 'winter'); 
+    ('Replacing window screens and screen doors with storm windows and doors', 'Annual'); 
     
     
