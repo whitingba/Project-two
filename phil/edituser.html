@@ -16,7 +16,7 @@
 
     <link
       rel="stylesheet"
-      href="../public/styles/styles.css"
+      href="./styles/styles.css"
       media="screen"
       title="no title"
       charset="utf-8"
@@ -86,104 +86,7 @@
       </div>
     </nav>
 
-    <!-- This will be in newtask.handlebars -->
-    <div class="container newTask">
-      <div class="row">
-        <div class="col col-lg-12">
-          <div class="jumbotron text-center">
-            <h1>New Task</h1>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col col-lg-12">
-          <form>
-            <div class="form-group">
-              <label for="taskInput">Task</label>
-              <input
-                type="text"
-                class="form-control"
-                id="taskInput"
-                placeholder="Enter task (e.g. Clean gutters.)"
-              />
-            </div>
-            <div class="form-group">
-              <label for="taskSeason">Season</label>
-              <select class="form-control" id="taskSeason">
-                <option>spring</option>
-                <option>summer</option>
-                <option>fall</option>
-                <option>winter</option>
-                <option>none</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="taskFrequency">Frequency</label>
-              <select class="form-control" id="taskFrequency">
-                <option>daily</option>
-                <option>weekly</option>
-                <option>monthly</option>
-                <option>quarterly</option>
-                <option>bi-annual</option>
-                <option>annual</option>
-                <option>other</option>
-              </select>
-            </div>
-
-            <!-- TODO: how do I get all the users from the database here? -->
-            <div class="form-group">
-              <label for="taskOwner">Owner</label>
-              <select class="form-control" id="taskOwner">
-                <option>Jaime Hardcoded</option>
-                <option>Bulah Hardcoded</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label for="taskLocation">Location</label>
-              <select class="form-control" id="taskLocation">
-                <option>indoor</option>
-                <option>outdoor</option>
-                <option>both</option>
-              </select>
-            </div>
-            <button class="btn btn-primary" id="addTaskBtn">Add Task</button>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal -->
-    <div class="modal" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title">Please add a task.</h3>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-dismiss="modal"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script src="../public/js/newtask.js"></script>
-    <!-- end of newtask.handlebars -->
+    {{{body}}}
 
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
