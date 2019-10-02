@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    const MaintenanceTask = sequelize.define('MaintenanceTask', {
+    const Task = sequelize.define('Task', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -35,8 +35,8 @@ module.exports = function (sequelize, DataTypes) {
         // }
     });
 
-    MaintenanceTask.associate = function (models) {
-        MaintenanceTask.belongsTo(models.User, {
+    Task.associate = function (models) {
+        Task.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             }
@@ -44,5 +44,5 @@ module.exports = function (sequelize, DataTypes) {
     };
 
 
-    return MaintenanceTask;
+    return Task;
 };
