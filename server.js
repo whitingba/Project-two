@@ -6,28 +6,33 @@ var path = require("path");
 
 var app = express();
 
-app.get('/', (req, res) => res.send('INDEX'));
+//Obi's code
+//app.get('/', (req, res) => res.send('INDEX'));
 
 var PORT = process.env.PORT || 3000;
 
-app.listen(PORT, console.log("Server started on port ${PORT}"));
+//Obi's code
+//app.listen(PORT, console.log("Server started on port ${PORT}"));
 
-
+//Obi's code
 // Database  
-var db = require("./config/database");
+//var db = require("./config/database");
+var db = require("./models");
 
+//Obi's code
 // Test DB
-db.authenticate()
-  .then(() => console.log("Database connected..."))
-  .catch(err => console.log("Error: " + err))
+// db.authenticate()
+//   .then(() => console.log("Database connected..."))
+//   .catch(err => console.log("Error: " + err))
 
 
 
-
+//Obi's code
 // User routes
-app.use("/users", require("./routes/user"));
+//app.use("/users", require("./routes/user"));
 
-
+require("./routes/task-apiRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
 
 
@@ -38,27 +43,27 @@ app.use("/users", require("./routes/user"));
 
 // Handlebars
 //app.engine(
-  //"handlebars",
-  //exphbs({
-   // defaultLayout: "main"
-  //})
+//"handlebars",
+//exphbs({
+// defaultLayout: "main"
+//})
 //);
 //app.set("view engine", "handlebars");
 
 // Routes
 
-//var syncOptions = { force: false };
+var syncOptions = { force: false };
 
-// If running a test, set syncOptions.force to true
-// clearing the `testdb`
-//if (process.env.NODE_ENV === "test") {
-  //syncOptions.force = true;
-//}
+//If running a test, set syncOptions.force to true
+//clearing the`testdb`
+if (process.env.NODE_ENV === "test") {
+  syncOptions.force = true;
+}
 
 // Starting the server, syncing our models ------------------------------------/
 
-db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
+db.sequelize.sync(syncOptions).then(function () {
+  app.listen(PORT, function () {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,

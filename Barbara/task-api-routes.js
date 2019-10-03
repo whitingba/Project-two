@@ -2,9 +2,9 @@
 var db = require("../models");
 
 module.exports = function (app) {
-    //****************ALL TASK ROUTES (BARBARA)***************/
+    //****************ALL TASK ROUTES ***************/
     // GET route for getting all of the tasks "List All Tasks page"
-    app.get("/", function (req, res) {
+    app.get("/api/alltasks", function (req, res) {
         db.Task.findAll({
             order: [
                 ['task', 'ASC'],
