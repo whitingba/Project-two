@@ -1,16 +1,32 @@
-
-var Sequelize = require("sequelize");
-
-var db = require("../config/database");
-
-var User = db.define("user", {
-    user_name: {
-      type: Sequelize.STRING
+module.exports = function (sequelize, DataTypes) {
+  const User = sequelize.define('User', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
     },
-    contact_email: {
-      type: Sequelize.STRING
+    userName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [5, 15]
       }
-})
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      isAlphanumeric: true,
+      validate: {
+        len: [5, 20]
+      }
+    }
 
+  })
 
-module.exports = User;
+  User.associate = function (models) {
+    //User will have many tasks
+    User.hasMany(models.Task); //foreign id of UserId will be added to the Task table
+  };
+
+  return User;
+};
