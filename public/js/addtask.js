@@ -7,7 +7,7 @@ $(document).ready(function() {
           "Content-Type": "application/json"
         },
         type: "POST",
-        url: "api/tasks", //NOTE: not sure what the route is yet
+        url: "api/tasks", //NOTE: REPLACE THE ADD TASK ROUTE HERE
         data: JSON.stringify(task, frequency, owner)
       });
     }
@@ -29,9 +29,8 @@ $(document).ready(function() {
       //add the task to the database
     } else {
       task = task.trim();
-      console.log(task, frequency, owner);
       API.saveTask(task, frequency, owner).then(function() {
-        //QUESTION: What do I do now?  sync with the database?
+        console.log(task, frequency, owner);
       });
     }
   });
