@@ -50,26 +50,28 @@ var db = require("./models");
 // User routes
 //app.use("/users", require("./routes/user"));
 
+//Routes
 require("./routes/task-apiRoutes")(app);
+require("./routes/user.apiRoutes")(app);
 //require("./routes/htmlRoutes")(app);
 
 
 
 // Middleware
-//app.use(express.urlencoded({ extended: false }));
-//app.use(express.json());
-//app.use(express.static("public"));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.static("public"));
 
 // Handlebars
-//app.engine(
-//"handlebars",
-//exphbs({
-// defaultLayout: "main"
-//})
-//);
-//app.set("view engine", "handlebars");
+app.engine(
+  "handlebars",
+  exphbs({
+    defaultLayout: "main"
+  })
+);
+app.set("view engine", "handlebars");
 
-// Routes
+
 
 var syncOptions = { force: false };
 
