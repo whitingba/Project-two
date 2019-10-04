@@ -1,4 +1,3 @@
-
 var express = require("express");
 var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
@@ -34,7 +33,7 @@ app.use(bodyParser.json());
 //app.listen(PORT, console.log("Server started on port ${PORT}"));
 
 //Obi's code
-// Database  
+// Database
 //var db = require("./config/database");
 var db = require("./models");
 
@@ -44,8 +43,6 @@ var db = require("./models");
 //   .then(() => console.log("Database connected..."))
 //   .catch(err => console.log("Error: " + err))
 
-
-
 //Obi's code
 // User routes
 //app.use("/users", require("./routes/user"));
@@ -54,8 +51,6 @@ var db = require("./models");
 require("./routes/task-apiRoutes")(app);
 require("./routes/user.apiRoutes")(app);
 //require("./routes/htmlRoutes")(app);
-
-
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -83,8 +78,8 @@ if (process.env.NODE_ENV === "test") {
 
 // Starting the server, syncing our models ------------------------------------/
 
-db.sequelize.sync(syncOptions).then(function () {
-  app.listen(PORT, function () {
+db.sequelize.sync(syncOptions).then(function() {
+  app.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
@@ -94,4 +89,3 @@ db.sequelize.sync(syncOptions).then(function () {
 });
 
 module.exports = app;
-
