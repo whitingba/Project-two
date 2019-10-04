@@ -6,13 +6,13 @@ $(document).ready(function() {
   var API = {
     getUsers: function() {
       return $.ajax({
-        url: "api/user",
+        url: "api/users",
         type: "GET"
       });
     },
     deleteUsers: function(id) {
       return $.ajax({
-        url: "api/user/" + id,
+        url: "api/users/" + id,
         type: "DELETE"
       });
     }
@@ -21,6 +21,7 @@ $(document).ready(function() {
   // refreshUsers gets new users from the db and repopulates the list
   var refreshUsers = function() {
     API.getUsers().then(function(data) {
+      console.log(data);
       var $users = data.map(function(user) {
         var $a1 = $("<a>")
           .text(user.text)
@@ -39,16 +40,18 @@ $(document).ready(function() {
         var $td1 = $("<td>").append($a1);
         var $td2 = $("<td>").append($a2);
         var $td3 = $("<td>").append($button);
+        var $tr = $("<tr>");
 
-        var $tr = $("<tr>")
-          .attr({
-            "data-id": user.id
-          })
-          .append($td1)
-          .append($td2)
-          .append($td)
-          .append($td3);
-
+        for (var i = 0; i < user.length; i++) {
+          $tr
+            .attr({
+              "data-id": user.id
+            })
+            .append($td1)
+            .append($td2)
+            .append($td)
+            .append($td3);
+        }
         return $tr;
       });
 
@@ -69,4 +72,5 @@ $(document).ready(function() {
 
   // Add event listeners to the submit and delete buttons
   $userList.on("click", ".delete", handleDeleteBtnClick);
+  refreshUsers();
 });

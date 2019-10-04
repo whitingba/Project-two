@@ -125,28 +125,7 @@
               <th></th>
             </tr>
           </thead>
-          <tbody id="user-list">
-            {{#each examples}}
-            <tr data-id="{{ this.id }}">
-              <td>
-                <a href="example/{{ this.id }}">{{ this.text }}</a>
-              </td>
-              <td>
-                <a href="example/{{ this.id }}">{{ this.description }}</a>
-              </td>
-              <td></td>
-              <td>
-                <button
-                  data-id="{{ this.id }}"
-                  class="btn btn-danger float-right delete"
-                >
-                  ｘ
-                </button>
-              </td>
-            </tr>
-
-            {{/each}}
-          </tbody>
+          <tbody id="user-list"></tbody>
         </table>
       </div>
     </div>
