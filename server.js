@@ -3,6 +3,9 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var path = require("path");
+//Passport is being used for user authentication
+var passport = require('passport');
+var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 
 var app = express();
 
@@ -10,6 +13,22 @@ var app = express();
 //app.get('/', (req, res) => res.send('INDEX'));
 
 var PORT = process.env.PORT || 3000;
+
+//***********for user auth*******************
+// passport.use(new GoogleStrategy({
+//   consumerKey: GOOGLE_CONSUMER_KEY,
+//   consumerSecret: GOOGLE_CONSUMER_SECRET,
+//   callbackURL: "http://www.example.com/auth/google/callback"
+// },
+//   function (token, tokenSecret, profile, done) {
+//     User.findOrCreate({ googleId: profile.id }, function (err, user) {
+//       return done(err, user);
+//     });
+//   })
+// );
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 //Obi's code
 //app.listen(PORT, console.log("Server started on port ${PORT}"));
@@ -32,7 +51,7 @@ var db = require("./models");
 //app.use("/users", require("./routes/user"));
 
 require("./routes/task-apiRoutes")(app);
-require("./routes/htmlRoutes")(app);
+//require("./routes/htmlRoutes")(app);
 
 
 
