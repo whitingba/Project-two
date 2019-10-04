@@ -47,7 +47,9 @@ var db = require("./models");
 // User routes
 //app.use("/users", require("./routes/user"));
 
+//Routes
 require("./routes/task-apiRoutes")(app);
+require("./routes/user.apiRoutes")(app);
 //require("./routes/htmlRoutes")(app);
 
 // Middleware
@@ -64,7 +66,7 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-// Routes
+
 
 var syncOptions = { force: false };
 

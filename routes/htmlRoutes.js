@@ -1,42 +1,53 @@
 var db = require("../models");
 var path = require("path");
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Load login page
-  app.get("/", function(req, res) {
-    //res.sendFile(path.join(__dirname, "../phil/login.html"));
-    res.render("login");
+  app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/login.html"));
+    //res.render("login");
   });
 
   // Load signup page
-  app.get("/signup", function(req, res) {
-    res.render("signup");
+  app.get("/signup", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
+    //res.render("signup");
   });
 
   // Load add task page
-  app.get("/add/task", function(req, res) {
-    res.render("addtask");
+  app.get("/add/task", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/addtask.html"));
+    // res.render("addtask");
   });
 
   //TODO: Take a harder look at these 2 edit task pages  they both go to edittask handlebars
   //Load edit task page  (which is just the addtask page with data populated)
-  app.get("/edit/task/", function(req, res) {
-    res.render("edittask");
+  app.get("/edit/task/", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/edittask.html"));
+    //res.render("edittask");
   });
+
+  //Load edit user page
+  app.get("/edit/user/", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/edituser.html"));
+  });
+
 
   //TODO: Take a harder look at these 2 edit task pages  they both go to edittask handlebars
   //Load the addtask page with datapopulated so the user can edit
-  app.get("/edit/task/:taskid", function(req, res) {
-    res.render("addtask");
-  });
+  // app.get("/edit/task/:taskid", function (req, res) {
+
+  //   res.render("addtask");
+  // });
 
   //Load list all tasks page
-  app.get("/list/task", function(req, res) {
-    res.render("listtask");
+  app.get("/list/task", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/listtask.html"));
+    //res.render("listtask");
   });
 
   // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
+  app.get("*", function (req, res) {
     res.render("404");
   });
 };

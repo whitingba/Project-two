@@ -6,13 +6,13 @@ module.exports = (app) => {
     //Get route here for viewing all users by name
 
     app.get('/api/users', (req, res) => {
-        var query = {};
-        if (req.query.name_id) {
-            query.NameId = req.query.name_id;
-        }
+        // var query = {};
+        // if (req.query.user_id) {
+        //     query.NameId = req.query.user_id;
+        // }
         db.User.findAll({
-            where: query,
-            include: [db.Name]
+
+            // include: [db.Task]
         }).then((dbUser) => {
             res.json(dbUser);
         });
