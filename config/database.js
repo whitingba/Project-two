@@ -1,6 +1,6 @@
 var Sequelize = require("sequelize");
 
-module.exports = new Sequelize("crud_db", "root", "your password here", {
+module.exports = new Sequelize("crud_db", "root", "13Icancode!!!", {
   host: "localhost",
   dialect: "mysql",
 
