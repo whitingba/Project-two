@@ -50,7 +50,7 @@ var db = require("./models");
 //Routes
 require("./routes/task-apiRoutes")(app);
 require("./routes/user.apiRoutes")(app);
-//require("./routes/htmlRoutes")(app);
+require("./routes/htmlRoutes")(app);
 
 // Middleware
 app.use(express.urlencoded({ extended: false }));
@@ -68,7 +68,7 @@ app.set("view engine", "handlebars");
 
 
 
-var syncOptions = { force: false };
+var syncOptions = { force: true };
 
 //If running a test, set syncOptions.force to true
 //clearing the`testdb`

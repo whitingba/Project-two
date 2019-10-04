@@ -35,7 +35,7 @@ module.exports = (app) => {
         //  console.log(res);
         db.Task.destroy({
             where: {
-                id: req.params.id
+                id: req.query.id
             }
         })
             .then(dbTask => {
