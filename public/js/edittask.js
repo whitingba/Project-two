@@ -11,8 +11,8 @@ $(document).ready(function () {
     $(document).on("click", "button.delete", deleteTask);
     $(document).on("click", "button.editCtl", toggleFinish);
     $(document).on("click", ".task-item", editTask);
-    $(document).on("click", ".task-item", finishEdit);
-    $(document).on("blur", ".task-item", cancelEdit);
+    $(document).on("click", ".editCtl", finishEdit);
+    //$(document).on("blur", ".task-item", cancelEdit);
     // $(document).on("submit", "#todo-form", insertTodo);
 
     // Our initial tasks array
@@ -68,9 +68,12 @@ $(document).ready(function () {
     //TODO: enable completing tasks here 
     function toggleFinish(event) {
         event.stopPropagation();
+        var task = $('#editTaskName').val();
+        var frequency = $('#editFreq').val();
+        var owner = $('#editUserName').val();
         var task = $(this).parent().parent().data("task");
         task.finish = !task.finish;
-        updateTask(task);
+        updateTask(task, frequency, owner);
     }
 
     //***************EDIT TASKS IN DATABASE***************/
@@ -85,23 +88,30 @@ $(document).ready(function () {
 
 
     function updateTask(task, frequency, owner) {
+        console.log('Owner: ', owner);
+        console.log('task: ', task);
+        console.log('frequency: ', frequency);
         $.ajax({
             method: "PUT",
             url: "/api/tasks",
-            data: task, frequency, owner
+            data: {
+                task: task,
+                frequency: frequency,
+                owner: owner
+            },
         }).then(getTasks);
     }
 
 
-    function cancelEdit() {
-        var currentTask = $(this).data("task");
-        if (currentTask) {
-            $(this).parent().parent().children().hide();
-            $(this).children("input.edit").val(currentTask.text);
-            $(this).children("span").show();
-            $(this).children("button").show();
-        }
-    }
+    // function cancelEdit() {
+    //     var currentTask = $(this).data("task");
+    //     if (currentTask) {
+    //         $(this).parent().parent().children().hide();
+    //         $(this).children("input.edit").val(currentTask.text);
+    //         $(this).children("span").show();
+    //         $(this).children("button").show();
+    //     }
+    // }
 
 
     // This function constructs a task-item row
