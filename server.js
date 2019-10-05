@@ -66,7 +66,7 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-var syncOptions = { force: true };
+var syncOptions = { force: false };
 
 //If running a test, set syncOptions.force to true
 //clearing the`testdb`
