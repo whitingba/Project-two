@@ -16,7 +16,7 @@
 
     <link
       rel="stylesheet"
-      href="./styles/styles.css"
+      href="/styles/styles.css"
       media="screen"
       title="no title"
       charset="utf-8"
@@ -57,7 +57,7 @@
           <li class="nav-item active">
             <a class="nav-link" href="#">
               <img
-                src="./img/task-white.png"
+                src="/img/task-white.png"
                 width="30"
                 height="30"
                 class="d-inline-block align-top"
@@ -111,7 +111,7 @@
           </div>
         </div>
 
-        <form class="clearfix mb-4 form-inline" action="POST">
+        <form class="clearfix mb-4 form-inline">
           <div class="form-row align-items-center">
             <div class="form-group col-md-5">
               <label class="sr-only" for="user-entry">User Entry</label>
@@ -141,10 +141,38 @@
       </div>
     </div>
 
+    <div class="modal" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Please add a user.</h3>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script
       type="text/javascript"
       src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
     ></script>
-    <script src="./js/adduser.js"></script>
+    <script src="/js/adduser.js"></script>
   </body>
 </html>
