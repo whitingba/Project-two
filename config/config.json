@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< Updated upstream
-    "password": "VW@man325",
-=======
-    "password": "13Icancode!!!",
->>>>>>> Stashed changes
+
     "database": "crud_db",
     "host": "localhost",
     "dialect": "mysql"
