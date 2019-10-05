@@ -11,7 +11,7 @@ $(document).ready(function () {
     $(document).on("click", "button.delete", deleteUser);
     //$(document).on("click", "button.complete", toggleComplete); //will not have a complete feature
     $(document).on("click", ".user-item", editUser);
-    $(document).on("keyup", ".user-item", finishEdit);
+    $(document).on("click", ".user-item", finishEdit);
     $(document).on("blur", ".user-item", cancelEdit);
     // $(document).on("submit", "#todo-form", insertTodo);
 
