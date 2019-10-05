@@ -11,7 +11,7 @@ $(document).ready(function () {
     $(document).on("click", "button.delete", deleteTask);
     $(document).on("click", "button.editCtl", toggleFinish);
     $(document).on("click", ".task-item", editTask);
-    $(document).on("keyup", ".task-item", finishEdit);
+    $(document).on("click", ".task-item", finishEdit);
     $(document).on("blur", ".task-item", cancelEdit);
     // $(document).on("submit", "#todo-form", insertTodo);
 
@@ -57,7 +57,7 @@ $(document).ready(function () {
     //****************EDIT TASKS****************/
     function editTask() {
         var currentTask = $(this).parent().parent().data("task");
-
+        console.log($(this).parent().parent().children());
         $(this).parent().parent().children().hide();
         $(this).parent().parent().children("td.edit.editCtl").val(currentTask.task);//set the values here
         $(this).parent().parent().children("td.edit").show();
@@ -75,7 +75,7 @@ $(document).ready(function () {
 
     //***************EDIT TASKS IN DATABASE***************/
     function finishEdit(event) {
-        var updatedTask = $(this).data("task");
+        var updatedTask = $(this).parent().parent().data("task");
         if (event.which === 13) {
             updatedTask.task = $(this).children("input").val().trim();
             $(this).blur();
@@ -96,7 +96,7 @@ $(document).ready(function () {
     function cancelEdit() {
         var currentTask = $(this).data("task");
         if (currentTask) {
-            $(this).children().hide();
+            $(this).parent().parent().children().hide();
             $(this).children("input.edit").val(currentTask.text);
             $(this).children("span").show();
             $(this).children("button").show();
