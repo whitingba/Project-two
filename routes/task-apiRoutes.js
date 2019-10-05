@@ -31,11 +31,11 @@ module.exports = (app) => {
     });
 
     //DELETE route to delete a task
-    app.delete('/api/tasks', (req, res) => {
+    app.delete('/api/tasks/:id', (req, res) => {
         //  console.log(res);
         db.Task.destroy({
             where: {
-                id: req.query.id
+                id: req.params.id
             }
         })
             .then(dbTask => {
