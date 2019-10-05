@@ -22,41 +22,28 @@ $(document).ready(function() {
   var refreshUsers = function() {
     API.getUsers().then(function(data) {
       console.log(data);
-      var $users = data.map(function(user) {
-        var $a1 = $("<a>")
-          .text(user.text)
-          .attr("href", "/user/" + user.id);
-        var $a2 = $("<a>")
-          .text(user.description)
-          .attr("href", "/user/" + user.id);
-        var $button = $("<button>")
-          .attr({
-            class: "btn btn-danger float-right delete",
-            "data-id": user.id
-          })
-          .text("ｘ");
+      // Here we then log the data to console, where it will show up as an object.
+      console.log("------------------------------------");
+      var $button = $("<button>")
+        .addClass("btn btn-danger float-right delete")
+        .text("ｘ");
+      // Loop through and display each of the customers
+      for (var i = 0; i < data.length; i++) {
+        // Get a reference to the tableList element and populate it with tables
 
-        var $td = $("<td>");
-        var $td1 = $("<td>").append($a1);
-        var $td2 = $("<td>").append($a2);
-        var $td3 = $("<td>").append($button);
-        var $tr = $("<tr>");
+        // Then display the fields in the HTML (Section Name, Date, URL)
+        var listItem = $("<li class='list-group-item mt-4'>").attr({
+          "data-id": data[i].id
+        });
 
-        for (var i = 0; i < user.length; i++) {
-          $tr
-            .attr({
-              "data-id": user.id
-            })
-            .append($td1)
-            .append($td2)
-            .append($td)
-            .append($td3);
-        }
-        return $tr;
-      });
+        listItem.append(
+          $("<h2>").text("User Name: " + data[i].userName),
+          $("<h2>").text("Password: " + data[i].password),
+          $button
+        );
 
-      $userList.empty();
-      $userList.append($users);
+        $userList.append(listItem);
+      }
     });
   };
 
@@ -72,5 +59,7 @@ $(document).ready(function() {
 
   // Add event listeners to the submit and delete buttons
   $userList.on("click", ".delete", handleDeleteBtnClick);
+  refreshUsers();
+
   refreshUsers();
 });

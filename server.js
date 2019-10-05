@@ -3,8 +3,8 @@ var exphbs = require("express-handlebars");
 var bodyParser = require("body-parser");
 var path = require("path");
 //Passport is being used for user authentication
-var passport = require('passport');
-var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+var passport = require("passport");
+var GoogleStrategy = require("passport-google-oauth").OAuthStrategy;
 
 var app = express();
 
@@ -66,8 +66,6 @@ app.engine(
 );
 app.set("view engine", "handlebars");
 
-
-
 var syncOptions = { force: true };
 
 //If running a test, set syncOptions.force to true
@@ -78,8 +76,8 @@ if (process.env.NODE_ENV === "test") {
 
 // Starting the server, syncing our models ------------------------------------/
 
-db.sequelize.sync(syncOptions).then(function () {
-  app.listen(PORT, function () {
+db.sequelize.sync(syncOptions).then(function() {
+  app.listen(PORT, function() {
     console.log(
       "==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
       PORT,
