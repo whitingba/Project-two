@@ -1,44 +1,48 @@
-// Get references to page elements
-var $userEntry = $("#user-entry");
-var $userPassword = $("#user-password");
-var $submitBtn = $("#submit");
-
 // The API object contains methods for each kind of request we'll make
-var API = {
-  saveUser: function(user) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/user",
-      data: JSON.stringify(user)
-    });
-  }
-};
 
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
+$(document).ready(function() {
+  // Add event listeners to the submit and delete buttons
+  $("#submit").on("click", function() {
+    event.preventDefault();
+    console.log("Ahhhhhh!");
+    userName = $("#user-entry")
+      .val()
+      .trim();
+    password = $("#user-password")
+      .val()
+      .trim();
+    console.log(userName, password);
 
-  var user = {
-    userName: $userEntry.val().trim(),
-    password: $userPassword.val().trim()
-  };
+    var userObject = {
+      userName: userName,
+      password: password
+    };
+    //Show a modal if there is no info, but the Add Task button was clicked
+    if (userName === "") {
+      console.log(userName);
+      $(".modal").modal("toggle");
+    } else {
+      $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/api/users",
+        data: JSON.stringify(userObject),
+        dataType: "json",
+        error: function(err) {
+          console.log("Fucking error: ", err);
+        }
+      });
 
-  if (!(user.userName && user.password)) {
-    alert("You must enter an user name and password!");
-    return;
-  }
+      function resetUser() {
+        $("#user-entry").val("");
+        $("#user-password").val("");
+      }
+      resetUser();
+    }
 
-  API.saveUser(user).then(function() {
-    console.log(user);
+    //   });
+    // API.saveUser(userName, password).then(function() {
+    //   console.log(userName, password);
+    // });
   });
-
-  $userEntry.val("");
-  $userPassword.val("");
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
+});
