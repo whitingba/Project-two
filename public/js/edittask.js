@@ -5,11 +5,11 @@ $(document).ready(function () {
     //var $newItemInput = $("input.new-item"); //TODO: not adding tasks in this screen
     // Our new todos will go inside the todoContainer
     var $taskContainer = $(".task-container"); //TODO: will not be adding tasks in this screen
-    // Adding event listeners for deleting, editing, and adding todos
+
 
     //***************EVENT LISTENERS***************/
     $(document).on("click", "button.delete", deleteTask);
-    //$(document).on("click", "button.complete", toggleComplete); //will not have a complete feature
+    $(document).on("click", "button.editCtl", toggleFinish);
     $(document).on("click", ".task-item", editTask);
     $(document).on("keyup", ".task-item", finishEdit);
     $(document).on("blur", ".task-item", cancelEdit);
@@ -65,19 +65,19 @@ $(document).ready(function () {
         $(this).children("input.edit").focus();
     }
 
-    //TODO: will not enable completing tasks here, only deleting them // Toggles complete status
-    // function toggleComplete(event) {
-    //     event.stopPropagation();
-    //     var todo = $(this).parent().data("todo");
-    //     todo.complete = !todo.complete;
-    //     updateTodo(todo);
-    // }
+    //TODO: enable completing tasks here 
+    function toggleFinish(event) {
+        event.stopPropagation();
+        var task = $(this).parent().parent().data("task");
+        task.finish = !task.finish;
+        updateTask(task);
+    }
 
     //***************EDIT TASKS IN DATABASE***************/
     function finishEdit(event) {
         var updatedTask = $(this).data("task");
         if (event.which === 13) {
-            updatedTask.text = $(this).children("input").val().trim();
+            updatedTask.task = $(this).children("input").val().trim();
             $(this).blur();
             updateTask(updatedTask);
         }
@@ -105,7 +105,7 @@ $(document).ready(function () {
 
 
     // This function constructs a task-item row
-    function createNewRow(task) { //FIXME: call this function
+    function createNewRow(task) {
         var $newInputRow = $(
             [
                 "<tr>",
@@ -123,11 +123,11 @@ $(document).ready(function () {
                 "</tr>"
 
 
-                // "<li class='list-group-item task-item'>", //TODO: .list-group-item has styling
+                // "<li class='list-group-item task-item'>", 
                 //     "<span>",
                 //     task.task,
                 //     "</span>",
-                //     "<input type='text' class='edit' style='display: none;'>", //TODO: .edit had styling
+                //     "<input type='text' class='edit' style='display: none;'>", 
                 //     "<button class='delete btn btn-danger'>Delete</button>",
                 //     //"<button class='complete btn btn-primary'>✓</button>",
                 //     "</li>"
@@ -137,7 +137,7 @@ $(document).ready(function () {
         $newInputRow.find("button.delete").data("id", task.id);
         $newInputRow.find("input.edit").css("display", "none");
         $newInputRow.data("task", task);
-        if (task.complete) {
+        if (task.finish) {
             $newInputRow.find("span").css("text-decoration", "line-through");
         }
         return $newInputRow;
