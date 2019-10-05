@@ -1,5 +1,3 @@
-
-
 $(document).ready(function () {
 
     //var $newItemInput = $("input.new-item"); //TODO: not adding tasks in this screen
@@ -55,25 +53,30 @@ $(document).ready(function () {
     }
 
     //****************EDIT TASKS****************/
+    //opens up the task boxes for editing
     function editTask() {
         var currentTask = $(this).parent().parent().data("task");
         console.log($(this).parent().parent().children());
         $(this).parent().parent().children().hide();
-        $(this).parent().parent().children("td.edit.editCtl").val(currentTask.task);//set the values here
+        $(this).parent().parent().find('#editId').val(currentTask.id);
+        $(this).parent().parent().find('#editTaskName').val(currentTask.task);
+        $(this).parent().parent().find('#editFreq').val(currentTask.frequency);
+        $(this).parent().parent().find('#editUserName').val(currentTask.User.userName);
         $(this).parent().parent().children("td.edit").show();
         //$(this).children("input.edit").show();
-        $(this).children("input.edit").focus();
+        $(this).parent().parent().find('#editTaskName').focus();
     }
 
     //TODO: enable completing tasks here 
     function toggleFinish(event) {
         event.stopPropagation();
+        var id = $('#editId').val();
         var task = $('#editTaskName').val();
         var frequency = $('#editFreq').val();
         var owner = $('#editUserName').val();
-        var task = $(this).parent().parent().data("task");
+        //var task = $(this).parent().parent().data("task");
         task.finish = !task.finish;
-        updateTask(task, frequency, owner);
+        updateTask(id, task, frequency, owner);
     }
 
     //***************EDIT TASKS IN DATABASE***************/
@@ -87,14 +90,15 @@ $(document).ready(function () {
     }
 
 
-    function updateTask(task, frequency, owner) {
-        console.log('Owner: ', owner);
-        console.log('task: ', task);
-        console.log('frequency: ', frequency);
+    function updateTask(id, task, frequency, owner) {
+        console.log('Owner1: ', owner);
+        console.log('task1: ', task);
+        console.log('frequency1: ', frequency);
         $.ajax({
             method: "PUT",
             url: "/api/tasks",
             data: {
+                id: id,
                 task: task,
                 frequency: frequency,
                 owner: owner
@@ -121,7 +125,7 @@ $(document).ready(function () {
                 "<tr>",
                 //<span class="task-container"></span>
                 "<td>" + task.id + "</td>",
-                "<td  class='edit' style='display:none;'>" + task.id + "</td>",
+                "<td  class='edit' style='display:none;'><input class='editCtl' id='editId' type='text' style='display:none;'>" + task.id + "</td>",
                 "<td>" + task.task + "</td>",
                 "<td  class='edit' style='display:none;'><input class='editCtl' id='editTaskName' type='text'></td>",
                 "<td class=''>" + task.frequency + "</td>",
