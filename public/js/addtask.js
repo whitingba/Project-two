@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  //
   //Caputure the values of the inputs
   $("#addTaskBtn").on("click", function() {
     event.preventDefault();
@@ -10,40 +11,34 @@ $(document).ready(function() {
       frequency: frequency,
       owner: owner
     };
-    console.log(taskObject);
+
+    // Show a modal if there is no info, but the Add Task button was clicked
+    if (task === "") {
+      console.log(task);
+      $(".modal").modal("toggle");
+    } else {
+      var taskObject = {
+        task: task.trim(),
+        frequency: frequency.trim(),
+        UserId: owner.trim()
+      };
+
+      $.ajax({
+        type: "POST",
+        contentType: "application/json",
+        url: "/api/tasks",
+        data: JSON.stringify(taskObject),
+        dataType: "json",
+        error: function(err) {
+          console.log("Fucking error: ", err);
+        }
+      });
+
+      // Reset FormData after Posting
+      function resetData() {
+        $("#taskInput").val("");
+      }
+      resetData();
+    }
   });
 });
-
-//Show a modal if there is no info, but the Add Task button was clicked
-// if (task === "") {
-//   $(".modal").modal("toggle");
-
-//   //add the task to the database
-// } else {
-//   var taskObject = {
-//     task: task.trim(),
-//     frequency: frequency.trim(),
-//     owner: owner.trim()
-//   };
-//   console.log(taskObject);
-// $.ajax({
-//   type: "POST",
-//   url: "/api/tasks",
-//   data: taskObject,
-//   success: function(newTask) {
-//     console.log(
-//       "Yehhhh" +
-//         newTask.task +
-//         " " +
-//         newTask.frequency +
-//         " " +
-//         newTask.owner
-//     );
-//   },
-//   error: function() {
-//     console.log("Nope.  Got it wrong.");
-//   }
-// });
-//     }
-//   });
-// });
