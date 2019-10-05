@@ -48,6 +48,9 @@ $(document).ready(function () {
         event.stopPropagation();
 
         var id = $(this).data("id");
+
+        var url = '/api/users/' + id;
+        
         $.ajax({
             method: "DELETE",
             url: "/api/users/" + id  //USER: pay attention this if there is an issue with deleting. Having issues with testing in postman
@@ -73,7 +76,7 @@ $(document).ready(function () {
     //     updateTodo(todo);
     // }
 
-    //***************EDIT TASKS IN DATABASE***************/
+    //***************EDIT USERS IN DATABASE***************/
     function finishEdit(event) {
         var updatedUser = $(this).data("user");
         if (event.which === 13) {
