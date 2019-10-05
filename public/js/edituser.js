@@ -46,7 +46,7 @@ $(document).ready(function () {
     //***************DELETE USERS***************/
     function deleteUser(event) {
         event.stopPropagation();
-
+        console.log(id);
         var id = $(this).data("id");
 
         var url = '/api/users/' + id;
@@ -54,6 +54,7 @@ $(document).ready(function () {
         $.ajax({
             method: "DELETE",
             url: "/api/users/" + id  //USER: pay attention this if there is an issue with deleting. Having issues with testing in postman
+
         }).then(getUsers);
     }
 
@@ -116,7 +117,7 @@ $(document).ready(function () {
                 "<td>" + user.id + "</td>",
                 "<td  class='edit' style='display:none;'>" + user.id + "</td>",
                 //"<td>" + user.user + "</td>",
-               // "<td  class='edit' style='display:none;'><input class='editCtl' id='editTaskName' type='text'></td>",
+                // "<td  class='edit' style='display:none;'><input class='editCtl' id='editTaskName' type='text'></td>",
                 "<td class=''>" + user.userName + "</td>",
                 "<td  class='edit' style='display:none;'><input class='editCtl' id='editUsername' type='text'></td>",
                 "<td class=''>" + user.password + "</td>",
