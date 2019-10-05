@@ -1,4 +1,4 @@
-//import { TableHints } from "sequelize/types";
+
 
 $(document).ready(function () {
 
@@ -118,7 +118,7 @@ $(document).ready(function () {
                 "<td  class='edit' style='display:none;'><input class='editCtl' id='editFreq' type='text'></td>",
                 "<td class=''>" + task.User.userName + "</td>",
                 "<td  class='edit' style='display:none;'><input class='editCtl' id='editUserName' type='text'></td>",
-                "<td> <button class='task-item'>Edit</button> <button>Delete</button></td>",
+                "<td> <button class='task-item'>Edit</button> <button class='delete'>Delete</button></td>",
                 "<td  class='edit' style='display:none;'><button class='editCtl' id='editSubmit'>Finish</button></td>",
                 "</tr>"
 

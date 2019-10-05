@@ -31,7 +31,7 @@ module.exports = (app) => {
     });
 
     //DELETE route to delete a user
-    app.delete('/api/users', (req, res) => {
+    app.delete('/api/users/:id', (req, res) => {
         console.log(req.query);
         db.User.destroy({
             where: {
