@@ -6,16 +6,16 @@ $(document).ready(function() {
   var API = {
     getUsers: function() {
       return $.ajax({
-        url: "api/users",
+        url: "/api/users",
         type: "GET"
       });
-    },
-    deleteUsers: function(id) {
-      return $.ajax({
-        url: "api/users/" + id,
-        type: "DELETE"
-      });
     }
+    // deleteUsers: function(id) {
+    //   return $.ajax({
+    //     url: "api/users/" + id,
+    //     type: "DELETE"
+    //   });
+    // }
   };
 
   // refreshUsers gets new users from the db and repopulates the list
@@ -36,10 +36,17 @@ $(document).ready(function() {
           "data-id": data[i].id
         });
 
+        var $h2 = $("<h2>");
+        $h2.append();
+
         listItem.append(
-          $("<h2>").text("User Name: " + data[i].userName),
-          $("<h2>").text("Password: " + data[i].password),
-          $button
+          $(
+            "<h2>User Name: <a href=edit/user/" +
+              data[i].id +
+              ">" +
+              data[i].userName +
+              "</a>"
+          )
         );
 
         $userList.append(listItem);
@@ -49,17 +56,15 @@ $(document).ready(function() {
 
   // handleDeleteBtnClick is called when an user's delete button is clicked
   // Remove the users from the db and refresh the list
-  var handleDeleteBtnClick = function() {
-    var idToDelete = $(this).attr("data-id");
+  // var handleDeleteBtnClick = function() {
+  //   var idToDelete = $(this).attr("data-id");
 
-    API.deleteUsers(idToDelete).then(function() {
-      refreshUsers();
-    });
-  };
+  //   API.deleteUsers(idToDelete).then(function() {
+  //     refreshUsers();
+  //   });
+  // };
 
-  // Add event listeners to the submit and delete buttons
-  $userList.on("click", ".delete", handleDeleteBtnClick);
-  refreshUsers();
-
+  // // Add event listeners to the submit and delete buttons
+  // $userList.on("click", ".delete", handleDeleteBtnClick);
   refreshUsers();
 });

@@ -7,31 +7,32 @@ var API = {
         "Content-Type": "application/json"
       },
       type: "POST",
-      url: "api/users", //NOTE: REPLACE THE ADD TASK ROUTE HERE
+      url: "/api/users", //NOTE: REPLACE THE ADD TASK ROUTE HERE
       data: JSON.stringify(userName, password)
     });
   }
 };
 
 // Add event listeners to the submit and delete buttons
-$$("#submit").on("click", function() {
+$("#submit").on("click", function() {
   event.preventDefault();
+  console.log("Ahhhhhh!");
   userName = $("#user-entry")
     .val()
     .trim();
   password = $("#user-password")
     .val()
     .trim();
-
+  console.log(userName, password);
   //Show a modal if there is no info, but the Add Task button was clicked
-  if (task === "") {
-    $(".modal").modal("toggle");
+  // if (userName === "") {
+  //   $(".modal").modal("toggle");
 
-    //add the task to the database
-  } else {
-    task = task.trim();
-    API.saveUser(userName, password).then(function() {
-      console.log(userName, password);
-    });
-  }
+  //   //add the task to the database
+  // } else {
+
+  //   });
+  API.saveUser(userName, password).then(function() {
+    console.log(userName, password);
+  });
 });
