@@ -1,4 +1,4 @@
-//import { TableHints } from "sequelize/types";
+
 
 $(document).ready(function () {
 
