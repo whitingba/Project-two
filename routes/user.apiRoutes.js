@@ -32,10 +32,10 @@ module.exports = (app) => {
 
     //DELETE route to delete a user
     app.delete('/api/users/:id', (req, res) => {
-        console.log(req.query);
+        console.log(req.params);
         db.User.destroy({
             where: {
-                id: req.query.id
+                id: req.params.id
             }
         })
             .then(dbUser => {
