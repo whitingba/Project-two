@@ -1,9 +1,6 @@
 $(document).ready(function () {
 
-    //var $newItemInput = $("input.new-item"); //TODO: not adding tasks in this screen
-    // Our new todos will go inside the todoContainer
-    var $taskContainer = $(".task-container"); //TODO: will not be adding tasks in this screen
-
+    var $taskContainer = $(".task-container");
 
     //***************EVENT LISTENERS***************/
     $(document).on("click", "button.delete", deleteTask);
@@ -16,12 +13,12 @@ $(document).ready(function () {
     // Our initial tasks array
     var tasks = [];
 
+
     // Getting tasks from database when page loads
     getTasks();
 
 
-    //DO NOT BELIEVE THIS IS NEEDED SINCE TODOS ARE NOT BEING ADDED IN THIS SCREEN
-    // This function resets the todos displayed with new todos from the database
+    // This function resets the tasks displayed with new tasks from the database
     function initializeRows() {
         $taskContainer.empty();
         var rowsToAdd = [];
@@ -48,7 +45,7 @@ $(document).ready(function () {
         var id = $(this).data("id");
         $.ajax({
             method: "DELETE",
-            url: "/api/tasks/" + id  //TODO: pay attention this if there is an issue with deleting. Having issues with testing in postman
+            url: "/api/tasks/" + id
         }).then(getTasks);
     }
 
@@ -67,14 +64,13 @@ $(document).ready(function () {
         $(this).parent().parent().find('#editTaskName').focus();
     }
 
-    //TODO: enable completing tasks here 
+
     function toggleFinish(event) {
         event.stopPropagation();
         var id = $('#editId').val();
         var task = $('#editTaskName').val();
         var frequency = $('#editFreq').val();
         var owner = $('#editUserName').val();
-        //var task = $(this).parent().parent().data("task");
         task.finish = !task.finish;
         updateTask(id, task, frequency, owner);
     }
@@ -91,9 +87,9 @@ $(document).ready(function () {
 
 
     function updateTask(id, task, frequency, owner) {
-        console.log('Owner1: ', owner);
-        console.log('task1: ', task);
-        console.log('frequency1: ', frequency);
+        // console.log('Owner1: ', owner);
+        // console.log('task1: ', task);
+        //console.log('frequency1: ', frequency);
         $.ajax({
             method: "PUT",
             url: "/api/tasks",
@@ -106,19 +102,7 @@ $(document).ready(function () {
         }).then(getTasks);
     }
 
-
-    // function cancelEdit() {
-    //     var currentTask = $(this).data("task");
-    //     if (currentTask) {
-    //         $(this).parent().parent().children().hide();
-    //         $(this).children("input.edit").val(currentTask.text);
-    //         $(this).children("span").show();
-    //         $(this).children("button").show();
-    //     }
-    // }
-
-
-    // This function constructs a task-item row
+    // This function constructs a task-item table for each task
     function createNewRow(task) {
         var $newInputRow = $(
             [
@@ -136,37 +120,42 @@ $(document).ready(function () {
                 "<td  class='edit' style='display:none;'><button class='editCtl' id='editSubmit'>Finish</button></td>",
                 "</tr>"
 
-
-                // "<li class='list-group-item task-item'>", 
-                //     "<span>",
-                //     task.task,
-                //     "</span>",
-                //     "<input type='text' class='edit' style='display: none;'>", 
-                //     "<button class='delete btn btn-danger'>Delete</button>",
-                //     //"<button class='complete btn btn-primary'>✓</button>",
-                //     "</li>"
             ].join("")
         );
 
         $newInputRow.find("button.delete").data("id", task.id);
         $newInputRow.find("input.edit").css("display", "none");
         $newInputRow.data("task", task);
-        if (task.finish) {
-            $newInputRow.find("span").css("text-decoration", "line-through");
-        }
+        //if (task.finish) {
+        //    $newInputRow.find("span").css("text-decoration", "line-through");
+        // }
         return $newInputRow;
     }
 
-    //new tasks will not be added in this screen
-    // This function inserts a new todo into our database and then updates the view
-    // function insertTask(event) {
-    //     event.preventDefault();
-    //     var todo = {
-    //         text: $newItemInput.val().trim(),
-    //         complete: false
-    //     };
+    //******Function to get the users to be displayed in the table*******//
+    function getUsers() {
+        $.get("api/users", renderUserList);
+    }
 
-    //     $.post("/api/todos", todo, getTodos);
-    //     $newItemInput.val("");
-    // }
+    //Initial users array
+    var users = [];
+    //function to render the list of users
+    function renderUserList() {
+        var usersToAdd = [];
+        for (var i = 0; i < users.length; i++) {
+            usersToAdd.push(createSelect(users[i]));
+            // console.log('users' + i + ':' + JSON.stringify(users[i]));
+        }
+    }
+
+    //create a select box for the available users
+    function createSelect() {
+        var $inputUserSelect = $(
+            [
+                "<select id='userNames'></select>"
+            ]
+        )
+    }
+
+
 });
