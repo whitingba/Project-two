@@ -21,7 +21,7 @@ module.exports = (app) => {
 
     //POST route to add a new task
     app.post('/api/tasks', (req, res) => {
-        console.log(req.body);
+        //console.log(req.body);
         db.Task.create(req.body)
 
             .then(dbTask => {

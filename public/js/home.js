@@ -1,20 +1,22 @@
-$(document).ready(function() {
-  $(".addTask").on("click", function() {
+$(document).ready(function () {
+  $(".addTask").on("click", function () {
     window.location = "add/task";
   });
-  $(".editTask").on("click", function() {
+  $(".editTask").on("click", function () {
     window.location = "edit/task";
   });
-  $(".listTask").on("click", function() {
+  $(".listTask").on("click", function () {
     window.location = "list/task";
   });
-  $(".addUser").on("click", function() {
+  $(".addUser").on("click", function () {
     window.location = "add/user";
   });
-  $(".editUser").on("click", function() {
+  $(".editUser").on("click", function () {
     window.location = "edit/user";
   });
-  $(".listUser").on("click", function() {
+  $(".listUser").on("click", function () {
     window.location = "list/user";
   });
+
+  particlesJS.load('particles-js', 'particles.json');
 });

@@ -23,7 +23,6 @@ $(document).ready(function() {
 
   function getTask() {
     API2.getTasks().then(function(taskTable) {
-      console.log(taskTable);
       taskData = taskTable;
       return taskData;
     });
@@ -43,19 +42,35 @@ $(document).ready(function() {
         var listItem = $("<li class='list-group-item mt-4'>").attr({
           "data-id": data[i].id
         });
-        console.log(taskData[i].task);
 
         listItem.append(
           $(
             "<h2>User Name: <a href='../edit/user/'>" +
               data[i].userName +
               "</a>"
-          ),
-          $("<h2> Task: Hello</h2>")
+          )
         );
+
+        for (var k = 0; k < taskData.length; k++) {
+          if (taskData[k].UserId === data[i].id) {
+            listItem.append(
+              $(
+                "<h4 style='text-indent:50px'> Task " +
+                  (k + 1) +
+                  ":" +
+                  taskData[k].task +
+                  "</h4>"
+              )
+            );
+          }
+        }
 
         $userList.append(listItem);
       }
+
+      // for (var k = 0; k < taskData.length; k++) {
+      //   console.log(taskData[k].task);
+      // }
     });
   };
   getTask();

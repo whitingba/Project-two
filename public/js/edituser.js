@@ -9,10 +9,9 @@ $(document).ready(function () {
 
     //***************EVENT LISTENERS***************/
     $(document).on("click", "button.delete", deleteUser);
-    //$(document).on("click", "button.complete", toggleComplete); //will not have a complete feature
+    $(document).on("click", "button.editCtl", toggleFinish);
     $(document).on("click", ".user-item", editUser);
-    $(document).on("keyup", ".user-item", finishEdit);
-    $(document).on("blur", ".user-item", cancelEdit);
+    $(document).on("click", ".editCtl", finishEdit);
     // $(document).on("submit", "#todo-form", insertTodo);
 
     // Our initial tasks array
@@ -49,63 +48,72 @@ $(document).ready(function () {
         console.log(id);
         var id = $(this).data("id");
 
-        var url = '/api/users/' + id;
-        
+        var url = '/api/users/' + id;       
         $.ajax({
             method: "DELETE",
             url: "/api/users/" + id  //USER: pay attention this if there is an issue with deleting. Having issues with testing in postman
-
         }).then(getUsers);
     }
 
     //****************EDIT USERS****************/
+    //opens up the user boxes for editing
     function editUser() {
         var currentUser = $(this).parent().parent().data("user");
-
+        console.log($(this).parent().parent().children());
         $(this).parent().parent().children().hide();
-        $(this).parent().parent().children("td.edit.editCtl").val(currentUser.user);//set the values here
+        $(this).parent().parent().find('#editId').val(currentUser.id);
+        $(this).parent().parent().find('#editUserName').val(currentUser.userName);
+        $(this).parent().parent().find('#editPassword').val(currentUser.password); 
         $(this).parent().parent().children("td.edit").show();
         //$(this).children("input.edit").show();
-        $(this).children("input.edit").focus();
+        $(this).parent().parent().find('#editUser').focus();
     }
 
-    //USER: will not enable completing users here, only deleting them // Toggles complete status
-    // function toggleComplete(event) {
-    //     event.stopPropagation();
-    //     var todo = $(this).parent().data("todo");
-    //     todo.complete = !todo.complete;
-    //     updateTodo(todo);
-    // }
+    //TODO: enable completing users here 
+    function toggleFinish(event) {
+        event.stopPropagation();
+        var id = $('#editId').val();
+        var userName = $('#editUserName').val();
+        var password = $('#editPassword').val();
+       var user = $(this).parent().parent().data("user");
+        user.finish = !user.finish;
+        updateUser(id, userName, password);
+    }
 
     //***************EDIT USERS IN DATABASE***************/
     function finishEdit(event) {
-        var updatedUser = $(this).data("user");
+        var updatedUser = $(this).parent().parent().data("user");
         if (event.which === 13) {
-            updatedUser.text = $(this).children("input").val().trim();
+            updatedUser.user = $(this).children("input").val().trim();
             $(this).blur();
             updateUser(updatedUser);
         }
     }
 
-
-    function updateUser(user, userName, password) {
+    function updateUser(id, userName, password) {
+        console.log('userName1: ', userName);
+        console.log('password1: ', password);
         $.ajax({
             method: "PUT",
             url: "/api/users",
-            data: user, userName, password
+            data: {
+                id: id,
+                userName: userName,
+                password: password
+            },
         }).then(getUsers);
     }
 
 
-    function cancelEdit() {
-        var currentUser = $(this).data("user");
-        if (currentUser) {
-            $(this).children().hide();
-            $(this).children("input.edit").val(currentUser.text);
-            $(this).children("span").show();
-            $(this).children("button").show();
-        }
-    }
+    // function cancelEdit() {
+    //     var currentUser = $(this).data("user");
+    //     if (currentUser) {
+    //         $(this).children().hide();
+    //         $(this).children("input.edit").val(currentUser.text);
+    //         $(this).children("span").show();
+    //         $(this).children("button").show();
+    //     }
+    // }
 
 
     // This function constructs a user-item row

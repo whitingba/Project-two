@@ -4,7 +4,6 @@ $(document).ready(function() {
   // Add event listeners to the submit and delete buttons
   $("#submit").on("click", function() {
     event.preventDefault();
-    console.log("Ahhhhhh!");
     userName = $("#user-entry")
       .val()
       .trim();
@@ -19,7 +18,6 @@ $(document).ready(function() {
     };
     //Show a modal if there is no info, but the Add Task button was clicked
     if (userName === "") {
-      console.log(userName);
       $(".modal").modal("toggle");
     } else {
       $.ajax({
@@ -39,10 +37,5 @@ $(document).ready(function() {
       }
       resetUser();
     }
-
-    //   });
-    // API.saveUser(userName, password).then(function() {
-    //   console.log(userName, password);
-    // });
   });
 });
