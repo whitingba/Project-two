@@ -18,6 +18,17 @@ module.exports = (app) => {
         });
     });
 
+    //to grab one user by id
+    app.get('/api/users/:id', (req, res) => {
+        db.User.findOne({
+            where: {
+                //UserName: req.body.UserName
+                id: req.params.id
+            }
+        }).then((dbUser) => {
+            res.json(dbUser);
+        });
+    });
 
     //POST route to add a new user
     app.post('/api/users', (req, res) => {

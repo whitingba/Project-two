@@ -23,6 +23,11 @@ module.exports = function (app) {
     //res.render("signup");
   });
 
+  app.get("/particles.json/", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/particles.json"));
+    //res.render("signup");
+  });
+
   //*************SIGNUP PAGE***********/
   // Load signup page
   app.get("/signup", function (req, res) {
