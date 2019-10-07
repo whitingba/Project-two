@@ -1,19 +1,11 @@
-
-
 $(document).ready(function () {
-
-    //var $newItemInput = $("input.new-item"); //USER: not adding users in this screen
-    // Our new todos will go inside the todoContainer
-    var $userContainer = $(".user-container"); //TODO: will not be adding users in this screen
-    // Adding event listeners for deleting, editing, and adding users
+    var $userContainer = $(".user-container");
 
     //***************EVENT LISTENERS***************/
     $(document).on("click", "button.delete", deleteUser);
-    //$(document).on("click", "button.complete", toggleComplete); //will not have a complete feature
+    $(document).on("click", "button.editCtl", toggleFinish);
     $(document).on("click", ".user-item", editUser);
-    $(document).on("click", ".user-item", finishEdit);
-    $(document).on("blur", ".user-item", cancelEdit);
-    // $(document).on("submit", "#todo-form", insertTodo);
+    $(document).on("click", ".editCtl", finishEdit);
 
     // Our initial tasks array
     var users = [];
@@ -21,8 +13,6 @@ $(document).ready(function () {
     // Getting tasks from database when page loads
     getUsers();
 
-
-    //DO NOT BELIEVE THIS IS NEEDED SINCE USERS ARE NOT BEING ADDED IN THIS SCREEN
     // This function resets the users displayed with new users from the database
     function initializeRows() {
         $userContainer.empty();
@@ -49,92 +39,76 @@ $(document).ready(function () {
         console.log(id);
         var id = $(this).data("id");
 
-        var url = '/api/users/' + id;
-        
         $.ajax({
             method: "DELETE",
-            url: "/api/users/" + id  //USER: pay attention this if there is an issue with deleting. Having issues with testing in postman
-
+            url: "/api/users/" + id
         }).then(getUsers);
     }
 
     //****************EDIT USERS****************/
+    //opens up the user boxes for editing
     function editUser() {
         var currentUser = $(this).parent().parent().data("user");
-
+        console.log($(this).parent().parent());
         $(this).parent().parent().children().hide();
-        $(this).parent().parent().children("td.edit.editCtl").val(currentUser.user);//set the values here
+        $(this).parent().parent().find('#editId').val(currentUser.id);
+        $(this).parent().parent().find('#editUsername').val(currentUser.userName);
+        $(this).parent().parent().find('#editPassword').val(currentUser.password);
         $(this).parent().parent().children("td.edit").show();
         //$(this).children("input.edit").show();
-        $(this).children("input.edit").focus();
+        $(this).parent().parent().find('#editUsername').focus();
     }
 
-    //USER: will not enable completing users here, only deleting them // Toggles complete status
-    // function toggleComplete(event) {
-    //     event.stopPropagation();
-    //     var todo = $(this).parent().data("todo");
-    //     todo.complete = !todo.complete;
-    //     updateTodo(todo);
-    // }
+    //TODO: enable completing users here 
+    function toggleFinish(event) {
+        event.stopPropagation();
+        var id = $(this).parent().parent().find('#editId').val();
+        var userName = $(this).parent().parent().find('#editUsername').val();
+        var password = $(this).parent().parent().find('#editPassword').val();
+        var user = $(this).parent().parent().data("user");
+        user.finish = !user.finish;
+        updateUser(id, userName, password);
+    }
 
     //***************EDIT USERS IN DATABASE***************/
     function finishEdit(event) {
-        var updatedUser = $(this).data("user");
+        var updatedUser = $(this).parent().parent().data("user");
         if (event.which === 13) {
-            updatedUser.text = $(this).children("input").val().trim();
+            updatedUser.user = $(this).children("input").val().trim();
             $(this).blur();
             updateUser(updatedUser);
         }
     }
 
-
-    function updateUser(user, userName, password) {
+    function updateUser(id, userName, password) {
+        console.log('userName1: ', userName);
+        console.log('password1: ', password);
         $.ajax({
             method: "PUT",
             url: "/api/users",
-            data: user, userName, password
+            data: {
+                id: id,
+                userName: userName,
+                password: password
+            },
         }).then(getUsers);
     }
 
-
-    function cancelEdit() {
-        var currentUser = $(this).data("user");
-        if (currentUser) {
-            $(this).children().hide();
-            $(this).children("input.edit").val(currentUser.text);
-            $(this).children("span").show();
-            $(this).children("button").show();
-        }
-    }
-
-
     // This function constructs a user-item row
-    function createNewRow(user) { //FIXME: call this function
+    function createNewRow(user) {
         var $newInputRow = $(
             [
                 "<tr>",
                 //<span class="user-container"></span>
                 "<td>" + user.id + "</td>",
-                "<td  class='edit' style='display:none;'>" + user.id + "</td>",
-                //"<td>" + user.user + "</td>",
-                // "<td  class='edit' style='display:none;'><input class='editCtl' id='editTaskName' type='text'></td>",
+                "<td  class='edit' style='display:none;'><input class='editCtl' id='editId' type='text' style='display:none;'>" + user.id + "</td>",
                 "<td class=''>" + user.userName + "</td>",
                 "<td  class='edit' style='display:none;'><input class='editCtl' id='editUsername' type='text'></td>",
                 "<td class=''>" + user.password + "</td>",
-                "<td  class='edit' style='display:none;'><input class='editCtl' id='editpassword' type='text'></td>",
+                "<td  class='edit' style='display:none;'><input class='editCtl' id='editPassword' type='text'></td>",
                 "<td> <button class='user-item'>Edit</button> <button class='delete'>Delete</button></td>",
                 "<td  class='edit' style='display:none;'><button class='editCtl' id='editSubmit'>Finish</button></td>",
                 "</tr>"
-
-
-                // "<li class='list-group-item user-item'>", //USER: .list-group-item has styling
-                //     "<span>",
-                //     user.user,
-                //     "</span>",
-                //     "<input type='text' class='edit' style='display: none;'>", //TODO: .edit had styling
-                //     "<button class='delete btn btn-danger'>Delete</button>",
-                //     //"<button class='complete btn btn-primary'>✓</button>",
-                //     "</li>"
             ].join("")
         );
 
@@ -147,16 +121,4 @@ $(document).ready(function () {
         return $newInputRow;
     }
 
-    //new users will not be added in this screen
-    // This function inserts a new user into our database and then updates the view
-    // function insertTask(event) {
-    //     event.preventDefault();
-    //     var todo = {
-    //         text: $newItemInput.val().trim(),
-    //         complete: false
-    //     };
-
-    //     $.post("/api/todos", todo, getTodos);
-    //     $newItemInput.val("");
-    // }
 });

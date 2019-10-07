@@ -1,29 +1,26 @@
-
-
 $(document).ready(function () {
 
-    //var $newItemInput = $("input.new-item"); //TODO: not adding tasks in this screen
-    // Our new todos will go inside the todoContainer
-    var $taskContainer = $(".task-container"); //TODO: will not be adding tasks in this screen
-
+    var $taskContainer = $(".task-container");
 
     //***************EVENT LISTENERS***************/
     $(document).on("click", "button.delete", deleteTask);
     $(document).on("click", "button.editCtl", toggleFinish);
     $(document).on("click", ".task-item", editTask);
-    $(document).on("click", ".task-item", finishEdit);
-    $(document).on("blur", ".task-item", cancelEdit);
+    $(document).on("click", ".editCtl", finishEdit);
+    //$(document).on("blur", ".task-item", cancelEdit);
     // $(document).on("submit", "#todo-form", insertTodo);
 
     // Our initial tasks array
     var tasks = [];
+    //Initial users array
+    var users = [];
+
 
     // Getting tasks from database when page loads
     getTasks();
 
 
-    //DO NOT BELIEVE THIS IS NEEDED SINCE TODOS ARE NOT BEING ADDED IN THIS SCREEN
-    // This function resets the todos displayed with new todos from the database
+    // This function resets the tasks displayed with new tasks from the database
     function initializeRows() {
         $taskContainer.empty();
         var rowsToAdd = [];
@@ -32,6 +29,7 @@ $(document).ready(function () {
             console.log('task' + i + ':' + JSON.stringify(tasks[i]));
         }
         $taskContainer.append(rowsToAdd);
+        getUsers();
     }
 
     //***************GET TASKS FROM DATABASE***************/
@@ -50,27 +48,35 @@ $(document).ready(function () {
         var id = $(this).data("id");
         $.ajax({
             method: "DELETE",
-            url: "/api/tasks/" + id  //TODO: pay attention this if there is an issue with deleting. Having issues with testing in postman
+            url: "/api/tasks/" + id
         }).then(getTasks);
     }
 
     //****************EDIT TASKS****************/
+    //opens up the task boxes for editing
     function editTask() {
         var currentTask = $(this).parent().parent().data("task");
         console.log($(this).parent().parent().children());
         $(this).parent().parent().children().hide();
-        $(this).parent().parent().children("td.edit.editCtl").val(currentTask.task);//set the values here
+        $(this).parent().parent().find('#editId').val(currentTask.id);
+        $(this).parent().parent().find('#editTaskName').val(currentTask.task);
+        $(this).parent().parent().find('#editFreq').val(currentTask.frequency);
+        $(this).parent().parent().find('#editUserName').val(currentTask.User.id);
         $(this).parent().parent().children("td.edit").show();
         //$(this).children("input.edit").show();
-        $(this).children("input.edit").focus();
+        $(this).parent().parent().find('#editTaskName').focus();
     }
 
-    //TODO: enable completing tasks here 
+
     function toggleFinish(event) {
         event.stopPropagation();
-        var task = $(this).parent().parent().data("task");
+        var id = $(this).parent().parent().find('#editId').val();
+        var task = $(this).parent().parent().find('#editTaskName').val();
+        var frequency = $(this).parent().parent().find('#editFreq').val();
+        var owner = $(this).parent().parent().find('#editUserName').val();
+
         task.finish = !task.finish;
-        updateTask(task);
+        updateTask(id, task, frequency, owner);
     }
 
     //***************EDIT TASKS IN DATABASE***************/
@@ -84,75 +90,87 @@ $(document).ready(function () {
     }
 
 
-    function updateTask(task, frequency, owner) {
+    function updateTask(id, task, frequency, owner) {
+        console.log('Owner1: ', owner);
+        console.log('task1: ', task);
+        console.log('frequency1: ', frequency);
         $.ajax({
             method: "PUT",
             url: "/api/tasks",
-            data: task, frequency, owner
+            data: {
+                id: id,
+                task: task,
+                frequency: frequency,
+                UserId: owner
+            },
         }).then(getTasks);
     }
 
-
-    function cancelEdit() {
-        var currentTask = $(this).data("task");
-        if (currentTask) {
-            $(this).parent().parent().children().hide();
-            $(this).children("input.edit").val(currentTask.text);
-            $(this).children("span").show();
-            $(this).children("button").show();
-        }
-    }
-
-
-    // This function constructs a task-item row
+    // This function constructs a task-item table for each task
     function createNewRow(task) {
         var $newInputRow = $(
             [
                 "<tr>",
                 //<span class="task-container"></span>
                 "<td>" + task.id + "</td>",
-                "<td  class='edit' style='display:none;'>" + task.id + "</td>",
+                "<td  class='edit' style='display:none;'><input class='editCtl' id='editId' type='text' style='display:none;'>" + task.id + "</td>",
                 "<td>" + task.task + "</td>",
                 "<td  class='edit' style='display:none;'><input class='editCtl' id='editTaskName' type='text'></td>",
                 "<td class=''>" + task.frequency + "</td>",
                 "<td  class='edit' style='display:none;'><input class='editCtl' id='editFreq' type='text'></td>",
                 "<td class=''>" + task.User.userName + "</td>",
-                "<td  class='edit' style='display:none;'><input class='editCtl' id='editUserName' type='text'></td>",
+                //"<td  class='edit' style='display:none;'><input class='editCtl' id='editUserName' type='text'></td>",
+                "<td  class='edit' style='display:none;'><select class='editCtl userSelect' id='editUserName'></select></td>",
                 "<td> <button class='task-item'>Edit</button> <button class='delete'>Delete</button></td>",
                 "<td  class='edit' style='display:none;'><button class='editCtl' id='editSubmit'>Finish</button></td>",
                 "</tr>"
 
-
-                // "<li class='list-group-item task-item'>", 
-                //     "<span>",
-                //     task.task,
-                //     "</span>",
-                //     "<input type='text' class='edit' style='display: none;'>", 
-                //     "<button class='delete btn btn-danger'>Delete</button>",
-                //     //"<button class='complete btn btn-primary'>✓</button>",
-                //     "</li>"
             ].join("")
         );
 
         $newInputRow.find("button.delete").data("id", task.id);
         $newInputRow.find("input.edit").css("display", "none");
         $newInputRow.data("task", task);
-        if (task.finish) {
-            $newInputRow.find("span").css("text-decoration", "line-through");
-        }
+        //if (task.finish) {
+        //    $newInputRow.find("span").css("text-decoration", "line-through");
+        // }
         return $newInputRow;
     }
 
-    //new tasks will not be added in this screen
-    // This function inserts a new todo into our database and then updates the view
-    // function insertTask(event) {
-    //     event.preventDefault();
-    //     var todo = {
-    //         text: $newItemInput.val().trim(),
-    //         complete: false
-    //     };
+    //******Function to get the users to be displayed in the table*******//
+    function getUsers() {
+        $.get("/api/users", function (data) {
+            console.log('data: ' + JSON.stringify(data));
+            users = data;
+            renderUserList();
+        });
 
-    //     $.post("/api/todos", todo, getTodos);
-    //     $newItemInput.val("");
-    // }
+        console.log('getUser function');
+    }
+
+
+
+
+    //function to render the list of users
+    function renderUserList() {
+        console.log(users.length);
+        console.log('renderUserList function');
+        var usersToAdd = [];
+        for (var i = 0; i < users.length; i++) {
+            usersToAdd.push(populateSelect(users[i]));
+            // console.log('users' + i + ':' + JSON.stringify(users[i]));
+        }
+    }
+
+    //create a select box for the available users
+    function populateSelect(user) {
+        console.log('populateSelect function');
+        var $editUserName = $('.userSelect');
+        $editUserName.append(new Option(user.userName, user.id));
+        //editUserName
+
+
+    }
+    //
+
 });
