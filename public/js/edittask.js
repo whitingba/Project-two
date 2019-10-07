@@ -12,6 +12,8 @@ $(document).ready(function () {
 
     // Our initial tasks array
     var tasks = [];
+    //Initial users array
+    var users = [];
 
 
     // Getting tasks from database when page loads
@@ -27,6 +29,7 @@ $(document).ready(function () {
             console.log('task' + i + ':' + JSON.stringify(tasks[i]));
         }
         $taskContainer.append(rowsToAdd);
+        getUsers();
     }
 
     //***************GET TASKS FROM DATABASE***************/
@@ -58,7 +61,7 @@ $(document).ready(function () {
         $(this).parent().parent().find('#editId').val(currentTask.id);
         $(this).parent().parent().find('#editTaskName').val(currentTask.task);
         $(this).parent().parent().find('#editFreq').val(currentTask.frequency);
-        $(this).parent().parent().find('#editUserName').val(currentTask.User.userName);
+        $(this).parent().parent().find('#editUserName').val(currentTask.User.id);
         $(this).parent().parent().children("td.edit").show();
         //$(this).children("input.edit").show();
         $(this).parent().parent().find('#editTaskName').focus();
@@ -67,10 +70,11 @@ $(document).ready(function () {
 
     function toggleFinish(event) {
         event.stopPropagation();
-        var id = $('#editId').val();
-        var task = $('#editTaskName').val();
-        var frequency = $('#editFreq').val();
-        var owner = $('#editUserName').val();
+        var id = $(this).parent().parent().find('#editId').val();
+        var task = $(this).parent().parent().find('#editTaskName').val();
+        var frequency = $(this).parent().parent().find('#editFreq').val();
+        var owner = $(this).parent().parent().find('#editUserName').val();
+
         task.finish = !task.finish;
         updateTask(id, task, frequency, owner);
     }
@@ -87,9 +91,9 @@ $(document).ready(function () {
 
 
     function updateTask(id, task, frequency, owner) {
-        // console.log('Owner1: ', owner);
-        // console.log('task1: ', task);
-        //console.log('frequency1: ', frequency);
+        console.log('Owner1: ', owner);
+        console.log('task1: ', task);
+        console.log('frequency1: ', frequency);
         $.ajax({
             method: "PUT",
             url: "/api/tasks",
@@ -97,7 +101,7 @@ $(document).ready(function () {
                 id: id,
                 task: task,
                 frequency: frequency,
-                owner: owner
+                UserId: owner
             },
         }).then(getTasks);
     }
@@ -115,7 +119,8 @@ $(document).ready(function () {
                 "<td class=''>" + task.frequency + "</td>",
                 "<td  class='edit' style='display:none;'><input class='editCtl' id='editFreq' type='text'></td>",
                 "<td class=''>" + task.User.userName + "</td>",
-                "<td  class='edit' style='display:none;'><input class='editCtl' id='editUserName' type='text'></td>",
+                //"<td  class='edit' style='display:none;'><input class='editCtl' id='editUserName' type='text'></td>",
+                "<td  class='edit' style='display:none;'><select class='editCtl userSelect' id='editUserName'></select></td>",
                 "<td> <button class='task-item'>Edit</button> <button class='delete'>Delete</button></td>",
                 "<td  class='edit' style='display:none;'><button class='editCtl' id='editSubmit'>Finish</button></td>",
                 "</tr>"
@@ -134,28 +139,38 @@ $(document).ready(function () {
 
     //******Function to get the users to be displayed in the table*******//
     function getUsers() {
-        $.get("api/users", renderUserList);
+        $.get("/api/users", function (data) {
+            console.log('data: ' + JSON.stringify(data));
+            users = data;
+            renderUserList();
+        });
+
+        console.log('getUser function');
     }
 
-    //Initial users array
-    var users = [];
+
+
+
     //function to render the list of users
     function renderUserList() {
+        console.log(users.length);
+        console.log('renderUserList function');
         var usersToAdd = [];
         for (var i = 0; i < users.length; i++) {
-            usersToAdd.push(createSelect(users[i]));
+            usersToAdd.push(populateSelect(users[i]));
             // console.log('users' + i + ':' + JSON.stringify(users[i]));
         }
     }
 
     //create a select box for the available users
-    function createSelect() {
-        var $inputUserSelect = $(
-            [
-                "<select id='userNames'></select>"
-            ]
-        )
-    }
+    function populateSelect(user) {
+        console.log('populateSelect function');
+        var $editUserName = $('.userSelect');
+        $editUserName.append(new Option(user.userName, user.id));
+        //editUserName
 
+
+    }
+    //
 
 });
