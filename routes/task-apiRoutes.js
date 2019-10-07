@@ -12,6 +12,9 @@ module.exports = (app) => {
         }
         db.Task.findAll({
             where: query,
+            order: [
+                [db.Task, 'id', 'ASC'],
+            ],
             include: [db.User]
         }).then((dbTask) => {
             res.json(dbTask);

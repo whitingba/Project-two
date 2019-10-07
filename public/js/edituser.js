@@ -48,7 +48,7 @@ $(document).ready(function () {
         console.log(id);
         var id = $(this).data("id");
 
-        var url = '/api/users/' + id;       
+        var url = '/api/users/' + id;
         $.ajax({
             method: "DELETE",
             url: "/api/users/" + id  //USER: pay attention this if there is an issue with deleting. Having issues with testing in postman
@@ -59,23 +59,23 @@ $(document).ready(function () {
     //opens up the user boxes for editing
     function editUser() {
         var currentUser = $(this).parent().parent().data("user");
-        console.log($(this).parent().parent().children());
+        console.log($(this).parent().parent());
         $(this).parent().parent().children().hide();
         $(this).parent().parent().find('#editId').val(currentUser.id);
-        $(this).parent().parent().find('#editUserName').val(currentUser.userName);
-        $(this).parent().parent().find('#editPassword').val(currentUser.password); 
+        $(this).parent().parent().find('#editUsername').val(currentUser.userName);
+        $(this).parent().parent().find('#editPassword').val(currentUser.password);
         $(this).parent().parent().children("td.edit").show();
         //$(this).children("input.edit").show();
-        $(this).parent().parent().find('#editUser').focus();
+        $(this).parent().parent().find('#editUsername').focus();
     }
 
     //TODO: enable completing users here 
     function toggleFinish(event) {
         event.stopPropagation();
         var id = $('#editId').val();
-        var userName = $('#editUserName').val();
+        var userName = $('#editUsername').val();
         var password = $('#editPassword').val();
-       var user = $(this).parent().parent().data("user");
+        var user = $(this).parent().parent().data("user");
         user.finish = !user.finish;
         updateUser(id, userName, password);
     }
@@ -123,13 +123,11 @@ $(document).ready(function () {
                 "<tr>",
                 //<span class="user-container"></span>
                 "<td>" + user.id + "</td>",
-                "<td  class='edit' style='display:none;'>" + user.id + "</td>",
-                //"<td>" + user.user + "</td>",
-                // "<td  class='edit' style='display:none;'><input class='editCtl' id='editTaskName' type='text'></td>",
+                "<td  class='edit' style='display:none;'><input class='editCtl' id='editId' type='text' style='display:none;'>" + user.id + "</td>",
                 "<td class=''>" + user.userName + "</td>",
                 "<td  class='edit' style='display:none;'><input class='editCtl' id='editUsername' type='text'></td>",
                 "<td class=''>" + user.password + "</td>",
-                "<td  class='edit' style='display:none;'><input class='editCtl' id='editpassword' type='text'></td>",
+                "<td  class='edit' style='display:none;'><input class='editCtl' id='editPassword' type='text'></td>",
                 "<td> <button class='user-item'>Edit</button> <button class='delete'>Delete</button></td>",
                 "<td  class='edit' style='display:none;'><button class='editCtl' id='editSubmit'>Finish</button></td>",
                 "</tr>"
