@@ -1,7 +1,8 @@
 ﻿# Project-two
-Customizable Residence Upkeep Database is a full-stack application that allows users to manage everyday home tasks from anywhere and on any device. Users create tasks, assign tasks to users, modify tasks, modify users, delete tasks, delete users, view all tasks, view all users, and view or modify future. 
-The following technologies were used:  CSS (w/bootstrap framework), JavaScript, JQuery, Express.js, MySQL2, Sequelize, particle.js, and Heroku. 
-How to Use App:
+### Background
+Customizable Residence Upkeep Database is a full-stack application that allows users to manage everyday home tasks from anywhere and on any device. Users create tasks, assign tasks to users, modify tasks, modify users, delete tasks, delete users, view all tasks, view all users, and view or modify future 
+
+### How to Use App:
 On the Home screen, users have options to log into their account or Sign up for an account if it’s their first time using the Application.
 User will click the drop down arrow key on “Tasks’ to view List of tasks or List of users or their specific tasks that are assigned to the user.
 To add a Task, user will click on “Add task”, fill in all required text area (task name, frequency, and owner). Owner here will be the any user that should have the created task assigned to. Once the “Add Task is clicked, the new task is stored in the “List Tasks” view.
@@ -9,4 +10,27 @@ When a task is created, user has an option to edit or delete any task. To do thi
 Also a list of “Coming Soon – pre- defined Tasks” is displayed on the Edit tasks screen with the functionality to edit or delete tasks.
 To add a User, current user will click on “Add User” and complete the user name field and password field and click the “submit’ button. The new user added will be created and stored in the “List Users” view.
 To edit a User works the same way as editing a task however user has less fields to complete which are the username and password field.
+
+### Link
 Check out the live version of this application here: https://crud-masters.herokuapp.com/
+
+### Screenshot
+##### Homepage
+![Screenshot of home page](https://github.com/whitingba/Project-two/blob/master/public/img/Homepage.PNG)
+
+### Technologies Used
+* CSS (w/bootstrap framework), 
+* JavaScript, 
+* JQuery, 
+* Express.js, 
+* MySQL2, 
+* Sequelize, 
+* Particle.js, and 
+* Heroku 
+
+
+### Authors
+Phil Mauracher
+Obiageli Ogbutor
+Austin Terry
+Barbara Whiting
