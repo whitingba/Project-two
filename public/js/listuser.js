@@ -1,10 +1,10 @@
 // Get references to page elements
-$(document).ready(function() {
+$(document).ready(function () {
   var $userList = $("#user-list");
   var taskData;
   // The API object contains methods for each kind of request we'll make
   var API = {
-    getUsers: function() {
+    getUsers: function () {
       return $.ajax({
         url: "/api/users",
         type: "GET"
@@ -13,7 +13,7 @@ $(document).ready(function() {
   };
 
   var API2 = {
-    getTasks: function() {
+    getTasks: function () {
       return $.ajax({
         url: "/api/tasks",
         type: "GET"
@@ -22,15 +22,15 @@ $(document).ready(function() {
   };
 
   function getTask() {
-    API2.getTasks().then(function(taskTable) {
+    API2.getTasks().then(function (taskTable) {
       taskData = taskTable;
       return taskData;
     });
   }
 
   // refreshUsers gets new users from the db and repopulates the list
-  var refreshUsers = function() {
-    API.getUsers().then(function(data) {
+  var refreshUsers = function () {
+    API.getUsers().then(function (data) {
       console.log(data);
 
       // Here we then log the data to console, where it will show up as an object.
@@ -45,9 +45,9 @@ $(document).ready(function() {
 
         listItem.append(
           $(
-            "<h2>User Name: <a href='../edit/user/'>" +
-              data[i].userName +
-              "</a>"
+            "<h2>User Name: <a href='../edit/user'>" +
+            data[i].userName +
+            "</a>"
           )
         );
 
@@ -56,10 +56,10 @@ $(document).ready(function() {
             listItem.append(
               $(
                 "<h4 style='text-indent:50px'> Task " +
-                  (k + 1) +
-                  ":" +
-                  taskData[k].task +
-                  "</h4>"
+                (k + 1) +
+                ":" +
+                taskData[k].task +
+                "</h4>"
               )
             );
           }
