@@ -30,7 +30,7 @@ Check out the live version of this application here: https://crud-masters.heroku
 
 
 ### Authors
-Phil Mauracher
-Obiageli Ogbutor
-Austin Terry
-Barbara Whiting
+* Phil Mauracher
+* Obiageli Ogbutor
+* Austin Terry
+* Barbara Whiting
