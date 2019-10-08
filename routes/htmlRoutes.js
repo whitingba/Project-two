@@ -2,7 +2,7 @@ var db = require("../models");
 var path = require("path");
 
 module.exports = function (app) {
-  //*************LOGIN PAGE***********/
+  //*************HOME PAGE***********/
   // Load home page
   app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
@@ -115,6 +115,16 @@ module.exports = function (app) {
   app.get("*", function (req, res) {
     res.sendFile(path.join(__dirname, "../public/404.html"));
   });
+
+
+  app.get('/api/defined/', (req, res) => {
+
+    db.DefinedTask.findAll({})
+      .then((dbDefinedTask) => {
+        res.json(dbDefinedTask);
+      });
+  });
+
 };
 
 //NOTE://///////////     Keeping all this just incase we might need it     ////////////////////

@@ -50,6 +50,7 @@ var db = require("./models");
 
 //Routes
 require("./routes/task-apiRoutes")(app);
+require("./routes/defined-task-routes")(app);
 require("./routes/user.apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
 
