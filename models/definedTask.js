@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-    const Task = sequelize.define('Task', {
+    const DefinedTask = sequelize.define('DefinedTask', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -19,7 +19,6 @@ module.exports = function (sequelize, DataTypes) {
                 len: [1, 20]
             }
         },
-
         //*****future enhancement here*****
         // location: {
         //     type: DataTypes.STRING,
@@ -30,23 +29,20 @@ module.exports = function (sequelize, DataTypes) {
         // },
         // season: {
         //     type: DataTypes.STRING,
-        //     allowNull: true,
+        //     allowNull: false,
         //     validate: {
         //         len: [1, 20]
         //     }
         // }
     });
 
-    Task.associate = function (models) {
-        Task.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
+    // DefinedTask.associate = function (models) {
+    //     DefinedTask.belongsTo(models.User, {
+    //         foreignKey: {
+    //             allowNull: false
+    //         }
+    //     });
+    // };
 
-
-
-
-    return Task;
+    return DefinedTask;
 };

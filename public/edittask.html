@@ -1,129 +1,90 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<head>
+  <meta charset="utf-8" />
 
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
-    />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-      crossorigin="anonymous"
-    ></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-      crossorigin="anonymous"
-    ></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
 
-    <link
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      rel="stylesheet"
-    />
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
 
-    <link
-      rel="stylesheet"
-      href="/styles/styles.css"
-      media="screen"
-      title="no title"
-      charset="utf-8"
-    />
-    <title>Edit Task</title>
-  </head>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8" />
+  <title>Edit Task</title>
+</head>
 
-  <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-      <a class="navbar-brand abs" href="/"
-        >Customizable Residence Upkeep Database</a
-      >
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#collapsingNavbar"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="navbar-collapse collapse" id="collapsingNavbar">
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="/">
-              <img
-                src="./img/task-white.png"
-                width="30"
-                height="30"
-                class="d-inline-block align-top"
-                alt=""
-              />
-              C.R.U.D. Masters</a
-            >
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="/"
-              >Home <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdownMenuLink"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Tasks
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="/list/task">List Tasks</a>
-              <a class="dropdown-item" href="/list/user">List Users</a>
-              <a class="dropdown-item" href="/">Your Tasks</a>
-            </div>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-item nav-link" href="/signup">Sign Up</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-item nav-link" href="/">Log In</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="container editTask mt-3">
-      <div class="row">
-        <div class="col col-lg-12">
-          <div class="jumbotron text-center">
-            <h1>Edit Tasks</h1>
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand abs" href="/">Customizable Residence Upkeep Database</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" id="collapsingNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">
+            <img src="./img/task-white.png" width="30" height="30" class="d-inline-block align-top" alt="" />
+            C.R.U.D. Masters</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Tasks
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="/list/task">List Tasks</a>
+            <a class="dropdown-item" href="/list/user">List Users</a>
+            <a class="dropdown-item" href="/">Your Tasks</a>
           </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-item nav-link" href="/signup">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-item nav-link" href="/">Log In</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <div class="container editTask mt-3">
+    <div class="row">
+      <div class="col col-lg-12">
+        <div class="jumbotron text-center">
+          <h1>Edit Tasks</h1>
         </div>
       </div>
-      <div class="row">
-        <div class="col col-lg-12">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Task</th>
-                <th scope="col">Frequency</th>
-                <th scope="col">Owner</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody class="task-container">
-              <!-- TODO: All of this will be pulled from the database and dynamically populated -->
-              <!-- <tr>
+    </div>
+    <div class="row">
+      <div class="col col-lg-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Task</th>
+              <th scope="col">Frequency</th>
+              <th scope="col">Owner</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody class="task-container">
+            <!--All of this will be pulled from the database and dynamically populated -->
+            <!-- <tr>
 
               <td>1</th>
               <td>Cut down the trees</td>
@@ -145,12 +106,60 @@
               <td>Otto</td>
               <td><button>Edit</button><button>Delete</button></td>
             </tr> -->
-            </tbody>
-          </table>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-lg-12">
+        <div class="jumbotron text-center">
+          <h1>Coming Soon - pre-defined tasks</h1>
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col col-lg-12">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Task</th>
+              <th scope="col">Frequency</th>
+              <th scope="col">User(future enhancement)</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody class="defined-task-container">
+            <!--All of this will be pulled from the database and dynamically populated -->
+            <!-- <tr>
+  
+                <td>1</th>
+                <td>Cut down the trees</td>
+                <td>Annual</td>
+                <td>Otto</td>
+                <td><button>Edit</button><button>Delete</button></td>
+              </tr>
+              <tr>
+                <td>2</th>
+                <td>Change HVAC filters</td>
+                <td>Quarterly</td>
+                <td>Anna</td>
+                <td><button>Edit</button><button>Delete</button></td>
+              </tr>
+              <tr>
+                <td>3</th>
+                <td>Clean eaves out</td>
+                <td>Bi-Annual</td>
+                <td>Otto</td>
+                <td><button>Edit</button><button>Delete</button></td>
+              </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 
-    <script src="../js/edittask.js"></script>
-  </body>
+  <script src="../js/edittask.js"></script>
+</body>
+
 </html>
