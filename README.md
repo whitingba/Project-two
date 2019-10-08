@@ -1,6 +1,6 @@
 ﻿# Project-two
-Customizable Residence Upkeep Database is a full-stack application that allows users to manage everyday home tasks from anywhere and on any device. Users create tasks, assign tasks to users, modify tasks, modify users, delete tasks, delete users, view all tasks, view all users, and view or modify future 
-The following technologies were used:  CSS (w/bootstrap framework), JavaScript, JQuery, Express.js, MySQL2, Sequelize, particle.js, and Heroku 
+Customizable Residence Upkeep Database is a full-stack application that allows users to manage everyday home tasks from anywhere and on any device. Users create tasks, assign tasks to users, modify tasks, modify users, delete tasks, delete users, view all tasks, view all users, and view or modify future. 
+The following technologies were used:  CSS (w/bootstrap framework), JavaScript, JQuery, Express.js, MySQL2, Sequelize, particle.js, and Heroku. 
 How to Use App:
 On the Home screen, users have options to log into their account or Sign up for an account if it’s their first time using the Application.
 User will click the drop down arrow key on “Tasks’ to view List of tasks or List of users or their specific tasks that are assigned to the user.
